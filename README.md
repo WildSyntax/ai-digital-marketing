@@ -6,10 +6,12 @@ code: skills, connectors, and Markdown.
 ## Setup (10 minutes)
 
 1. Open this folder in Claude Code.
-2. Edit `brand/profile.md` and `brand/keywords.md`; replace every "Example:" value.
+2. Edit `brand/profile.md` and `brand/keywords.md`; replace every "Example:" value, and fill
+   the front-matter fields `site_domain`, `timezone`, `canva_template`, `seo_threshold`.
 3. Drop a few of your own posts into `brand/examples/`.
 4. Run `/mcp` and connect Metricool (publishing), Canva (Instagram images), vidIQ (YouTube
-   research). See `docs/connectors.md` for optional ones.
+   research). See `docs/connectors.md` for optional ones. Scheduled routines (such as the
+   Monday ideas run) are set up separately; see `docs/connectors.md`.
 
 ## Daily use
 
@@ -20,9 +22,9 @@ code: skills, connectors, and Markdown.
 | `linkedin post about <topic>` | draft in `content/drafts/linkedin/` |
 | `instagram post about <topic>` | caption, hashtags, image |
 | `youtube video about <topic>` | title, description, script |
-| `approve <file>` | moves to `content/approved/` |
+| `approve <file>` / `approve <file> for <datetime>` | moves to `content/approved/`, optionally with a schedule time |
 | `repurpose <approved blog>` | three social drafts |
-| `publish <file>` / `publish all approved` | schedules via Metricool, moves to `content/published/` |
+| `publish <file>` / `publish all approved` | schedules via Metricool, moves to `content/published/`; blog publishes locally until a host connector is added |
 | `weekly review` | report in `reports/weekly/` |
 
 Nothing is published without you saying `approve` and then `publish`.

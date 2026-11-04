@@ -21,10 +21,13 @@ Read `brand/profile.md` before writing anything. Design: `docs/superpowers/specs
    `brand/profile.md`, refuse approval and show the fix list from `reports/seo/`, unless the
    owner says "approve anyway".
 4. The publish skill only reads from `content/approved/`.
-5. If a connector is not connected or a call fails: name the connector, leave the file where
-   it is, stop. Never retry a publish call (it could double-post).
+5. If a connector needed for publishing or a connector write is not connected or a call
+   fails: name the connector, leave the file where it is, stop. Never retry a publish call
+   (it could double-post). Drafting skills that define a no-connector path (instagram-post,
+   youtube-video, topic-ideas) continue without the connector and say so.
 6. Never write secrets into this repo. Connectors authenticate via `/mcp`.
-7. Commit after each content change: `content(<channel>): <action> <slug>`.
+7. Commit after each content change: `content(<channel>): <action> <slug>` (topic-ideas is the
+   exception: `content(ideas): add <n> ideas <date>`).
 8. Never use phrases listed under "Banned words and phrases" in `brand/profile.md`.
 
 ## Skills
@@ -45,13 +48,16 @@ Read `brand/profile.md` before writing anything. Design: `docs/superpowers/specs
 ## Approval procedure
 
 1. Confirm the file is in `content/drafts/<channel>/`. If not, say where it is and stop.
-2. If `channel: blog`: require `seo_score >= seo_threshold`. Otherwise refuse, print the
-   "Fixes" list from `reports/seo/<filename>.md`, and stop, unless the owner said
-   "approve anyway".
-3. Set `status: approved`. If the owner gave a time, set `scheduled_for` as ISO 8601 with the
+2. If the body contains `<...>` or `TODO:` placeholders, refuse approval and list them.
+3. If `channel: blog`: first re-run seo-check (edits since the last score make it stale), then
+   require `seo_score >= seo_threshold`. Otherwise refuse, print the "Fixes" list from
+   `reports/seo/<filename>.md`, and stop, unless the owner said "approve anyway".
+4. Set `status: approved`. If the owner gave a time, set `scheduled_for` as ISO 8601 with the
    profile timezone offset (e.g. `2026-11-10T09:00:00+05:30`).
-4. `git mv` the file to `content/approved/<channel>/`, commit `content(<channel>): approve <slug>`.
-5. Reply with the new path and, for blogs, offer to run repurpose.
+5. `git mv` the file to `content/approved/<channel>/`. For a blog, also run
+   `grep -l "^source: <old path>" -r content/` and update each referencing file's `source` to
+   the new path in the same commit. Commit `content(<channel>): approve <slug>`.
+6. Reply with the new path and, for blogs, offer to run repurpose.
 
 ## Weekly review procedure
 
@@ -59,7 +65,7 @@ Write `reports/weekly/YYYY-MM-DD.md` containing:
 - counts of files per channel in ideas, drafts, approved, published
 - every draft: path, title, created date, seo_score if blog
 - every approved item: path, scheduled_for
-- items published in the last 7 days with `published_url`
+- items whose `published_at` is within the last 7 days, with `published_url`
 - blog drafts with `seo_score < seo_threshold`
 - ideas older than 30 days (suggest keep or drop)
 Commit `docs: weekly review YYYY-MM-DD`.
@@ -79,9 +85,19 @@ seo_score: null
 created: YYYY-MM-DD
 scheduled_for: null
 published_url: null
+published_at: null
+publish_attempted: null
 source: null
 ---
 ```
+
+`source` is the source blog's path at repurpose time and may go stale when the blog moves;
+approval and publish of a blog update every referencing file (see above).
+
+Channel extras, when present: `canva_design_url` and `image_url` (instagram; `image_url` is the
+public http(s) URL of the exported PNG that publish uses), `video_file` (youtube), `pillar`
+(ideas, carried into blog drafts), `publish_attempted` (ISO datetime set just before a publish
+call), `published_at` (ISO datetime set on success).
 
 Body sections per channel are defined in each skill. Channel-specific extras (meta
 description, hashtags, image brief, tags, thumbnail brief) are `##` sections in the body.
