@@ -31,6 +31,8 @@ After adding a blog host, update the `blog` branch of `.claude/skills/publish/SK
 
 ## Scheduled routines
 
+Full config and prompts: `docs/routines.md`.
+
 Recurring runs (for example the Monday topic-ideas run) are set up separately from this
 repo, in Claude Code's scheduled-task settings. Routines never approve or publish.
 
