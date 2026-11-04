@@ -26,7 +26,7 @@ This skill never moves files.
      `/`; external = any other host. Also count entries under `## Suggested internal links`
      as internal.
    - images: `![alt](url)` in body plus the alt text line under `## Image brief`
-4. Score each check. Keyword matching is case-insensitive and ignores punctuation.
+4. Score each check. Keyword matching follows the Counting rules below.
 
    | # | Check | Points |
    |---|---|---|
@@ -47,6 +47,25 @@ This skill never moves files.
    | 15 | every image has non-empty alt text, and `## Image brief` includes an alt text line | 5 |
 
    Total 100. Density = occurrences of the exact keyword phrase ÷ body words × 100.
+
+5. Write `reports/seo/<filename>.md`:
+
+   ```markdown
+   # SEO report: <title>
+   File: <path>  Keyword: <keyword>  Score: <score>/100  Threshold: <seo_threshold>  Result: PASS|FAIL
+   Checked: YYYY-MM-DD
+
+   | # | Check | Points | Earned | Note |
+   |---|---|---|---|---|
+   (one row per check; Note gives the measured value, e.g. "title is 44 chars")
+
+   ## Fixes
+   (ordered by points lost, most first; each one concrete, e.g. "Add 'e-commerce analytics'
+   to the title; current: '...'")
+   ```
+6. Set `seo_score: <score>` in the draft's front matter (replace the existing line).
+7. Reply in chat: score, PASS/FAIL against threshold, and the top 3 fixes.
+8. If run standalone (not from blog-post), commit `content(blog): seo-check <slug>`.
 
 ## Counting rules
 
@@ -95,21 +114,3 @@ These settle every ambiguity above; apply them exactly.
   check number. If the score is 100, write "No fixes needed".
 - **Front matter:** if `seo_score` is absent, add `seo_score: <score>` on a new line after
   `keyword`.
-
-5. Write `reports/seo/<filename>.md`:
-
-   ```markdown
-   # SEO report: <title>
-   File: <path>  Keyword: <keyword>  Score: <score>/100  Threshold: <seo_threshold>  Result: PASS|FAIL
-   Checked: YYYY-MM-DD
-
-   | # | Check | Points | Earned | Note |
-   |---|---|---|---|---|
-   (one row per check; Note gives the measured value, e.g. "title is 44 chars")
-
-   ## Fixes
-   (ordered by points lost, most first; each one concrete, e.g. "Add 'e-commerce analytics'
-   to the title; current: '...'")
-   ```
-6. Set `seo_score: <score>` in the draft's front matter (replace the existing line).
-7. Reply in chat: score, PASS/FAIL against threshold, and the top 3 fixes.

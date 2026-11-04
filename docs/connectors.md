@@ -21,10 +21,15 @@ and completing the sign-in. Nothing is stored in the repo.
 | webflow | https://mcp.webflow.com/mcp | Blog host is Webflow |
 | openseo | https://app.openseo.so/mcp | Live site audits and rank tracking |
 
-Snippet to add one:
+Snippet to add one (paste inside the `mcpServers` object):
 
 ```json
 "wordpress": { "type": "http", "url": "https://public-api.wordpress.com/wpcom/v2/mcp/v1" }
 ```
 
 After adding a blog host, update the `blog` branch of `.claude/skills/publish/SKILL.md`.
+
+## Scheduled routines
+
+Recurring runs (for example the Monday topic-ideas run) are set up separately from this
+repo, in Claude Code's scheduled-task settings. Routines never approve or publish.
