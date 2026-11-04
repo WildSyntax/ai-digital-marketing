@@ -50,3 +50,12 @@ Avoid: hype, jargon, exclamation marks, emojis in blog posts (emojis allowed spa
 ## Blog defaults
 - Target length: 1200–2000 words
 - Always include: a short intro that states the problem, H2 sections, a FAQ section when the topic has common questions, and the blog CTA at the end.
+
+## Visual identity
+- Primary colour: Example: #1F3A5F
+- Secondary colour: Example: #E8EEF4
+- Accent colour: Example: #F2A541
+- Heading font: Example: Poppins (fallback: Arial)
+- Body font: Example: Lora (fallback: Georgia)
+- Logo usage: Example: Dark logo on light backgrounds, white logo on dark backgrounds. Keep clear space equal to the logo's height. Never stretch, recolour or add effects.
+- Image style: Example: Real photos of small teams at work, natural light, no stock handshakes. Simple flat charts in brand colours.

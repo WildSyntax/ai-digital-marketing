@@ -18,6 +18,8 @@ This skill never installs plugins itself: the owner runs the install commands.
 | `.claude/product-marketing.md` | context file the library skills read first | every library skill |
 | `brand/profile.md` | brand voice, CTAs, rules | every workspace skill |
 | `metricool`, `canva`, `vidiq` connectors (`.mcp.json`) | publishing, images, YouTube research | publish, instagram-post, youtube-video, topic-ideas |
+| Vendored skills (`.claude/skills/*` with `metadata.source`) | 29 open-source skills copied into this repo; listed in `THIRD_PARTY_NOTICES.md` | owner, directly |
+| FFmpeg 6.1+ and Python 3.10+ (optional) | local video tools | `ffmpeg-skill` only |
 
 Library skills this workspace calls (all must exist): `copywriting`, `copy-editing`,
 `content-strategy`, `ai-seo`, `schema`, `social`, `image`, `video`, `marketing-council`.
@@ -65,7 +67,13 @@ Library skills this workspace calls (all must exist): `copywriting`, `copy-editi
    session. For each missing one, say what stops working without it (publish needs
    `metricool`; instagram-post and youtube-video and topic-ideas continue without `canva` /
    `vidiq`) and "connect via /mcp".
-6. **Git.** Run `git status --short` and `git remote -v`; report uncommitted files and the
+6. **Vendored skills.** For every `.claude/skills/*/SKILL.md` whose front matter has
+   `metadata.source`: confirm a `LICENSE.txt` sits next to it and the skill appears in
+   `THIRD_PARTY_NOTICES.md`; name any that fail. Run `ffmpeg -version` and `python3 --version`:
+   if FFmpeg is missing or older than 6.1, or Python is older than 3.10, mark `ffmpeg-skill` as
+   WARN with "install FFmpeg (e.g. `brew install ffmpeg`) to use video editing". Do not install
+   anything yourself.
+7. **Git.** Run `git status --short` and `git remote -v`; report uncommitted files and the
    remote.
-7. Reply with a checklist, one line per item: `OK`, `ACTION`, or `WARN`, plus the fix.
+8. Reply with a checklist, one line per item: `OK`, `ACTION`, or `WARN`, plus the fix.
    End with the next thing to try, e.g. "topic ideas" or "write a blog on <topic>".

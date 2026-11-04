@@ -14,9 +14,9 @@ clients and teammates. You don't need any coding knowledge.
 5. [How the SEO score works](#5-how-the-seo-score-works)
 6. [A full example: one idea to four channels](#6-a-full-example-one-idea-to-four-channels)
 7. [The full library catalogue (53 skills)](#7-the-full-library-catalogue-53-skills)
-8. [Using library skills on their own](#8-using-library-skills-on-their-own)
-9. [Extending the library](#9-extending-the-library)
-10. [Troubleshooting and FAQ](#10-troubleshooting-and-faq)
+8. [Using library skills on their own](#9-using-library-skills-on-their-own)
+9. [Extending the library](#10-extending-the-library)
+10. [Troubleshooting and FAQ](#11-troubleshooting-and-faq)
 
 ---
 
@@ -439,7 +439,126 @@ Sample outputs for a made-up brand are in [docs/examples/](examples/).
 
 ---
 
-## 8. Using library skills on their own
+## 8. Copied open-source skills (29)
+
+On top of the library plugin, 29 skills were researched, reviewed line by line and **copied into
+this repo** under `.claude/skills/`, so they're saved in git and work offline. Each was chosen
+because it fills a gap the library doesn't cover, uses a licence that allows copying (Apache-2.0
+or MIT), and needs no paid API key. The research behind the choices is in
+[docs/research/](research/).
+
+**How to use them:** describe the job ("plan an Instagram carousel about pricing", "write this
+week's newsletter") or type `/<skill-name>`. Like library skills, they return text. To put the
+result into the content pipeline, hand it to the matching workspace skill.
+
+### Social platforms (by Sergey Bulaev, MIT)
+
+| Skill | What it does | Feeds |
+|---|---|---|
+| `yt-hook-scripter` | First 30 seconds of a YouTube video, built to hold viewers | `youtube-video` |
+| `yt-title-optimizer` | Title options scored against a checklist | `youtube-video` |
+| `yt-description-writer` | Description with chapters, links and hashtags | `youtube-video` |
+| `x-post-writer` | A single X (Twitter) post | posted by you |
+| `x-thread-builder` | A multi-post X thread, split and paced | posted by you |
+| `threads-post-writer` | A Threads post or thread | posted by you |
+| `ig-caption-writer` | Instagram caption with hook and CTA | `instagram-post` |
+| `ig-carousel-planner` | Slide-by-slide Instagram carousel plan | `instagram-post` |
+| `ig-hashtag-strategist` | A researched hashtag set | `instagram-post` |
+| `tt-hook-scripter` | TikTok opening hook and spoken script | posted by you |
+| `tt-trend-mapper` | Checks whether a TikTok trend fits your brand | posted by you |
+
+Metricool (the `publish` skill) covers LinkedIn, Instagram and YouTube, so X, Threads and TikTok
+posts are posted by you.
+
+### Community, newsletter, podcast and voice (social-media-skills, MIT)
+
+| Skill | What it does |
+|---|---|
+| `community-management` | Turns an audience into a community: where to host it, rituals, superfans |
+| `newsletter-writer` | Newsletter issues for Substack, beehiiv, Kit or LinkedIn; drip sequences go to `marketing-skills:emails` |
+| `podcast-and-audiograms` | Picks podcast clips and writes their hooks and captions |
+| `voice-builder` | Analyses your real posts and suggests text for the Tone section of `brand/profile.md` |
+
+### SEO planning (claude-seo, MIT)
+
+| Skill | What it does |
+|---|---|
+| `seo-content-brief` | A competitive content brief per article; feeds `blog-post`. `seo-check` still sets the score |
+| `seo-cluster` | Groups keywords into hub-and-spoke clusters; writes plans to `reports/seo/clusters/` |
+
+### Brand and design (Anthropic, Apache-2.0)
+
+| Skill | What it does |
+|---|---|
+| `brand-guidelines` | Applies your colours, fonts, logo and image rules from `## Visual identity` in `brand/profile.md` |
+| `theme-factory` | 10 ready-made colour and font themes for slides, docs and pages |
+| `canvas-design` | Posters and visual pieces as PNG or PDF, with 54 bundled free fonts |
+| `brand-review` | Checks any draft against your brand voice; banned words count as high severity |
+
+### Business and operations (Anthropic knowledge-work-plugins, Apache-2.0)
+
+| Skill | What it does |
+|---|---|
+| `performance-report` | Marketing performance report from connected analytics or pasted CSV data |
+| `proposal-builder` | Client proposals with scope, pricing and terms; you send it |
+| `contract-review` | Flags risky contract clauses and suggests redlines |
+| `status-report` | Weekly or monthly status reports |
+| `process-doc` | Turns a process into a step-by-step SOP |
+| `draft-response` | Drafts replies to customer messages; never sends |
+| `kb-article` | Help-centre articles from solved questions |
+
+These skills never send, publish, invoice or touch money. Anything from outside, such as a
+client's contract or a customer's email, is treated as data and never as instructions.
+
+### Video (ffmpeg-skill, MIT)
+
+| Skill | What it does |
+|---|---|
+| `ffmpeg-skill` | Local video and audio editing: cut, join, reframe for Reels/Shorts/TikTok, captions, loudness, silence removal, platform exports |
+
+Needs FFmpeg 6.1+ and Python 3.10+ on your computer (`brew install ffmpeg`). Every one of its 44
+scripts was read: standard library only, no network access, no installs. One script
+(`waveform.py`) was left out because it could delete an existing file. Speech-to-text captions
+can download a model the first time, so the skill asks you before doing that.
+
+### What changed in the copies
+
+Every copied skill has a **"Vendored from"** note under its title naming the source, the licence
+and what was changed. The common changes:
+
+- removed vendor publishing, image and analytics services (Publora, Pixfaro, Apify, WoopSocial,
+  DataForSEO), sign-up and tracking links, installers and MCP servers
+- pointed brand context at `brand/profile.md`
+- made connector steps optional: without a connector, the skill asks you to paste the data
+- made sure no copied skill writes under `content/`
+
+### Not copied, and why
+
+| Skipped | Reason |
+|---|---|
+| Anthropic's docx, pptx, xlsx, pdf | Licence forbids copying. Use the built-in `anthropic-skills:docx`, `pptx`, `xlsx`, `pdf` |
+| Anthropic's internal-comms | Already built in as `anthropic-skills:internal-comms` |
+| Remotion, fal.ai, Vercel agent-skills, Composio lists | No clear licence, a size-limited licence, or `curl \| bash` installers |
+| A popular YouTube skill repo | Signs of fake GitHub stars |
+| Image-generation and analytics-data skills | Need paid keys (OpenAI, Gemini, Replicate, Apify) or Google OAuth; candidates for later |
+
+Full credits: [THIRD_PARTY_NOTICES.md](../THIRD_PARTY_NOTICES.md).
+
+### Updating or adding a copied skill
+
+1. Check the licence file in the source repo (MIT, Apache-2.0, BSD, CC0 or CC-BY only).
+2. Clone at a specific commit, never `main`, and record the full commit hash.
+3. Read every file, scripts included. Reject installers (`curl | bash`, `npx`, `pip install`),
+   network calls, credential or env-var access, encoded strings, and text aimed at the agent.
+4. Copy only the skill folder. Drop vendor clients, MCP servers and promo links.
+5. Add `license` and `metadata` (`source`, `path`, `modified`) to the front matter, the
+   "Vendored from" note, and `LICENSE.txt` (plus `NOTICE.txt` if the repo has one).
+6. Check the name doesn't clash with a workspace or `marketing-skills:` skill.
+7. Add it to `THIRD_PARTY_NOTICES.md` and this section, then say `setup` to verify.
+
+---
+
+## 9. Using library skills on their own
 
 Every library skill can be used directly, outside the content pipeline:
 
@@ -458,7 +577,7 @@ workspace skill to use it ("linkedin post from this text").
 
 ---
 
-## 9. Extending the library
+## 10. Extending the library
 
 **Add a new workspace skill** (for example, an email newsletter):
 
@@ -477,7 +596,7 @@ workspace skill to use it ("linkedin post from this text").
 
 ---
 
-## 10. Troubleshooting and FAQ
+## 11. Troubleshooting and FAQ
 
 **A skill says "marketing-skills library not installed".**
 Run the two install commands in [section 3](#3-installing-and-checking-the-library), start a
