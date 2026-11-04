@@ -27,7 +27,8 @@ rejects any library suggestion that uses a banned phrase from `brand/profile.md`
 3. Write the post:
    - line 1: a hook under 12 words that states a problem, a surprising number, or a
      contrarian claim; no "I'm excited to share"
-   - 150–300 words, one idea per line, blank line between lines
+   - 150–300 words in short paragraphs of 1–3 sentences, blank line between paragraphs;
+     never one sentence per line for the whole post; no em dashes
    - a concrete example or number in the middle
    - end with the LinkedIn CTA from the profile, then 3–5 hashtags on the last line
    - no links in the body
