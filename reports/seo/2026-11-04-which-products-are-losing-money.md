@@ -1,6 +1,6 @@
 # SEO report: How to Find Which Products Are Losing Money in One Hour
-File: content/drafts/blog/2026-11-04-which-products-are-losing-money.md  Keyword: which products are losing money  Score: 90/100  Threshold: 70  Result: PASS
-Checked: 2026-11-04
+File: content/drafts/blog/2026-11-04-which-products-are-losing-money.md  Keyword: which products are losing money  Score: 100/100  Threshold: 70  Result: PASS
+Checked: 2026-11-05
 
 | # | Check | Points | Earned | Note |
 |---|---|---|---|---|
@@ -9,7 +9,7 @@ Checked: 2026-11-04
 | 3 | keyword in first 100 words of body | 10 | 10 | word 6 of the intro |
 | 4 | keyword in meta description | 5 | 5 | found |
 | 5 | keyword (hyphenated) in slug | 5 | 5 | slug is which-products-are-losing-money |
-| 6 | keyword density 0.5–2.0% | 10 | 0 | 3 uses in 1200 body words = 0.25% |
+| 6 | keyword frequency | 10 | 10 | 5-word keyword, so the 3+ word rule applies: 3 uses, density 0.25% (≤ 2.0%) |
 | 7 | exactly one H1 | 5 | 5 | 1 H1 |
 | 8 | at least 3 H2s, no H3 before first H2 | 5 | 5 | 8 H2s; FAQ H3s come after |
 | 9 | title length 50–60 chars | 5 | 5 | 55 chars |
@@ -21,8 +21,7 @@ Checked: 2026-11-04
 | 15 | image alt text | 5 | 5 | no inline images; Alt text line present |
 
 ## Fixes
-1. Check 6 (−10): use the exact phrase "which products are losing money" 3 more times in body prose to reach 0.5% (6 uses). Note: that is 30 of 1200 words for one 5-word phrase. The ai-seo library skill warns that keyword stuffing lowers AI search visibility, so the owner may prefer to accept the 10-point loss.
-2. Check 11 (no points lost, but at the limit): the body is exactly 1200 words. Any cut drops this check to 5 points.
+1. Check 11 (no points lost, but at the limit): the body is exactly 1200 words. Any cut drops this check to 5 points.
 
 ## AI search notes
 (Advisory, from marketing-skills:ai-seo; not scored.)

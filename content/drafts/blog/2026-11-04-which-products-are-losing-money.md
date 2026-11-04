@@ -4,7 +4,7 @@ channel: blog
 status: draft
 keyword: "which products are losing money"
 secondary_keywords: ["contribution margin", "how to calculate product margin"]
-seo_score: 90
+seo_score: 100
 created: 2026-11-04
 scheduled_for: null
 published_url: null
