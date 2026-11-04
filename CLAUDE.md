@@ -45,6 +45,30 @@ Read `brand/profile.md` before writing anything. Design: `docs/superpowers/specs
 | "publish <file>", "publish all approved" | publish | `content/published/<channel>/` |
 | "weekly review" | weekly review procedure (below) | `reports/weekly/` |
 
+## Marketing skills library (coreyhaines31/marketingskills)
+
+The workspace also uses the open-source `marketing-skills` plugin (MIT, 53 skills, the most
+widely used marketing skill collection for Claude Code). Install it once per machine:
+
+```
+claude plugin marketplace add coreyhaines31/marketingskills
+claude plugin install marketing-skills@marketingskills
+```
+
+Library skills advise and write text. The workspace skills above own file placement, front
+matter, the SEO score, and the approve/publish pipeline. Never let a library skill move or
+create files under `content/`; run it, then feed its output into the matching workspace skill.
+
+| Need | Library skill | Use it when |
+|---|---|---|
+| Polish a draft's copy | `/copywriting`, `/copy-editing` | after blog-post or a channel skill writes a draft, before "approve" |
+| Plan pillars and a calendar | `/content-strategy`, `/marketing-plan` | when filling `brand/profile.md` pillars or planning a quarter |
+| Audit the live site | `/seo-audit` | the "live SEO audit" option from the spec; replaces the OpenSEO connector |
+| Get cited by AI search | `/ai-seo`, `/schema` | on a blog draft before approval; schema suggestions go in the `## Image brief`-style extras section as `## Schema` |
+| Social variants | `/social` | to generate alternative hooks for linkedin-post / instagram-post drafts |
+| Visual and video briefs | `/image`, `/video` | to expand the `## Image brief` or `## Thumbnail brief` sections |
+| Second opinion | `/marketing-council` | before approving a campaign-level piece |
+
 ## Approval procedure
 
 1. Confirm the file is in `content/drafts/<channel>/`. If not, say where it is and stop.

@@ -33,3 +33,30 @@ After adding a blog host, update the `blog` branch of `.claude/skills/publish/SK
 
 Recurring runs (for example the Monday topic-ideas run) are set up separately from this
 repo, in Claude Code's scheduled-task settings. Routines never approve or publish.
+
+## Skill library: coreyhaines31/marketingskills
+
+Chosen over the alternatives on usage: ~58k GitHub stars and 8.5k forks, MIT, 53 skills,
+updated within the last week; next-best collections have 100–3k stars. Pure prose skills,
+no API keys, no paid dependencies for the core skills.
+
+Per machine:
+
+```
+claude plugin marketplace add coreyhaines31/marketingskills
+claude plugin install marketing-skills@marketingskills
+```
+
+To enable it for everyone who opens this folder, create `.claude/settings.json` with:
+
+```json
+{
+  "extraKnownMarketplaces": {
+    "marketingskills": { "source": { "source": "github", "repo": "coreyhaines31/marketingskills" } }
+  },
+  "enabledPlugins": { "marketing-skills@marketingskills": true }
+}
+```
+
+Claude Code asks for confirmation before installing a plugin declared by a project. The skill
+map (which library skill to use at which pipeline step) is in CLAUDE.md.

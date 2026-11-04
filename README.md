@@ -13,6 +13,16 @@ code: skills, connectors, and Markdown.
    research). See `docs/connectors.md` for optional ones. Scheduled routines (such as the
    Monday ideas run) are set up separately; see `docs/connectors.md`.
 
+5. Install the marketing skills library (optional, recommended):
+
+```bash
+claude plugin marketplace add coreyhaines31/marketingskills
+```
+
+```bash
+claude plugin install marketing-skills@marketingskills
+```
+
 ## Daily use
 
 | Say | Result |
@@ -26,6 +36,7 @@ code: skills, connectors, and Markdown.
 | `repurpose <approved blog>` | three social drafts |
 | `publish <file>` / `publish all approved` | schedules via Metricool, moves to `content/published/`; blog publishes locally until a host connector is added |
 | `weekly review` | report in `reports/weekly/` |
+| `/copywriting`, `/seo-audit`, `/ai-seo`, `/social`, ... | library skills from marketingskills; see CLAUDE.md "Marketing skills library" |
 
 Nothing is published without you saying `approve` and then `publish`.
 
