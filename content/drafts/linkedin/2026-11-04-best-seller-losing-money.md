@@ -8,6 +8,8 @@ seo_score: null
 created: 2026-11-04
 scheduled_for: null
 published_url: null
+published_at: null
+publish_attempted: null
 source: null
 ---
 
