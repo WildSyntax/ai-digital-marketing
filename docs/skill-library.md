@@ -179,8 +179,10 @@ used.
     assistants (ChatGPT, Perplexity, Google AI Overviews) can quote it.
   - `copy-editing`: a full polish pass that removes wordiness and phrasing that reads as
     AI-written.
-  - `schema`: JSON-LD structured data (`Article`, plus `FAQPage` when there's a FAQ) for your
-    site's `<head>`.
+  - `schema`: JSON-LD structured data for your site's `<head>`: `BlogPosting` (headline,
+    description, image, date, author, publisher), plus `FAQPage` when there's a FAQ. Google
+    stopped showing FAQ rich results in May 2026, so `FAQPage` mainly helps other search
+    and AI engines read the FAQ.
 - **Connectors:** none. Uses web search.
 
 ### seo-check
