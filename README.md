@@ -231,11 +231,17 @@ summarise this meeting and list the action items    (paste the notes)
 
 6. **Make your first piece.** Say `topic ideas`, then `write` one of the ideas.
 
-For video editing, install FFmpeg:
+For video editing, install FFmpeg. On a Mac, the full build includes the caption and text-overlay
+filters the video skill uses:
 
 ```bash
-brew install ffmpeg
+brew install ffmpeg-full
 ```
+
+`ffmpeg-full` is not added to your PATH automatically: say `setup`, or ask the video skill to
+run its check, and it prints the exact line to add to your shell profile.
+
+After adding or updating skills, start a new Claude Code session so they load.
 
 ---
 
@@ -338,6 +344,7 @@ ai-digital-marketing/
 | [docs/connectors.md](docs/connectors.md) | Connectors and optional blog hosts |
 | [docs/routines.md](docs/routines.md) | Optional scheduled runs (Monday topic ideas, Friday weekly review) |
 | [docs/examples/](docs/examples/) | Sample outputs for a made-up brand, "Northwind Analytics" |
+| [docs/examples/skill-tests/](docs/examples/skill-tests/) | Real test runs of 12 copied skills, and what testing found and fixed |
 | [CLAUDE.md](CLAUDE.md) | The rules, approval procedure and content file format |
 
 ## Credits

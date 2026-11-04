@@ -69,6 +69,15 @@ class FinancialRatioCalculator:
         "peg_ratio": (0.5, 1.0, 2.0),
     }
 
+    # Valuation multiples get a neutral, ungraded reading (no good/bad).
+    VALUATION_KEYS = ("pe_ratio", "pb_ratio", "ps_ratio", "ev_ebitda", "peg_ratio")
+
+    BENCHMARK_NOTE = (
+        "Assessments compare against generic built-in reference ranges, "
+        "not the owner's industry data. Valuation multiples are described "
+        "relative to that range only and are not graded."
+    )
+
     def __init__(self, data: Dict[str, Any]) -> None:
         """Initialize with financial statement data."""
         self.income = data.get("income_statement", {})
@@ -311,6 +320,16 @@ class FinancialRatioCalculator:
 
         low, typical, high = benchmarks
 
+        # Valuation multiples: neutral position vs the reference range only
+        if ratio_key in self.VALUATION_KEYS:
+            ref = f"reference range {low:g}-{high:g}"
+            if value < low:
+                return f"Below the {ref}"
+            elif value <= high:
+                return f"Within the {ref}"
+            else:
+                return f"Above the {ref}"
+
         # DSO is inverse - lower is better
         if ratio_key == "dso":
             if value <= low:
@@ -356,6 +375,7 @@ class FinancialRatioCalculator:
         lines.append("=" * 70)
         lines.append("FINANCIAL RATIO ANALYSIS")
         lines.append("=" * 70)
+        lines.append(f"  Note: {self.BENCHMARK_NOTE}")
 
         categories = (
             {category: self.results[category]}
@@ -382,8 +402,12 @@ class FinancialRatioCalculator:
     def to_json(self, category: Optional[str] = None) -> Dict[str, Any]:
         """Return results as JSON-serializable dict."""
         if category and category in self.results:
-            return {"category": category, "ratios": self.results[category]}
-        return {"categories": self.results}
+            return {
+                "category": category,
+                "ratios": self.results[category],
+                "benchmark_note": self.BENCHMARK_NOTE,
+            }
+        return {"categories": self.results, "benchmark_note": self.BENCHMARK_NOTE}
 
 
 def main() -> None:

@@ -11,7 +11,7 @@ metadata:
 # Financial Analyst Skill
 
 > Vendored from [alirezarezvani/claude-skills](https://github.com/alirezarezvani/claude-skills/tree/c85b17e1fb621ba760478baaacc4fcb9be225e74/finance/skills/financial-analyst) under MIT. needs: python3 (standard library only, no packages).
-> Changes for this workspace: added a "not financial advice" line and a never-invent-numbers rule; scripts must run on owner-supplied figures, with defaulted assumptions reported; removed the Buy/Hold/Sell recommendation from the DCF template; dropped the illustrative `assets/expected_output.json` test fixture; script paths made relative to this skill folder. Read brand/profile.md first. Return text; workspace skills own files under content/.
+> Changes for this workspace: added a "not financial advice" line and a never-invent-numbers rule; scripts must run on owner-supplied figures, with defaulted assumptions reported; removed the Buy/Hold/Sell recommendation from the DCF template; dropped the illustrative `assets/expected_output.json` test fixture; script paths made relative to this skill folder; budget variance analyzer: zero variance reads "On budget", amounts print unsigned and variances as -$2.3K/+$1.8K, new `--currency` option, materiality thresholds printed in the report header; ratio calculator: valuation multiples get a neutral above/within/below-reference-range reading instead of a good/bad grade, and the report states its ranges are generic. Read brand/profile.md first. Return text; workspace skills own files under content/.
 
 **Not financial advice.** This skill does arithmetic on figures the owner provides and explains what the results mean. It is not investment, tax, legal or accounting advice and does not recommend buying, selling or holding any security. For decisions with real money at stake, the owner should check with a qualified accountant or adviser.
 
@@ -20,6 +20,8 @@ metadata:
 - **Never invent numbers.** Use only figures the owner gives you (pasted, or in a file they point to). If a figure a calculation needs is missing, ask for it or leave that ratio out and say so. Do not fill gaps with benchmark, "typical range" or sample values.
 - `assets/sample_financial_data.json` is a demo with fictional figures (for "Acme Corp"). Use it only to show the input shape or to test that a script runs. Never present its results as the owner's numbers.
 - **Defaults in the scripts.** `dcf_valuation.py` and `forecast_builder.py` silently fall back to built-in defaults when an assumption is missing (for example risk-free rate 4%, equity risk premium 6%, beta 1.0, terminal growth 2.5%, exit multiple 12x, gross margin 40%, opex 25% of revenue, collection rate 85%). Before running, check which assumption keys the owner has supplied. Ask for the missing ones, or list every default used in the output as "assumed, not provided by you".
+- **Materiality threshold default.** `budget_variance_analyzer.py` flags a variance as material at 10% of budget or 50,000 (currency units), whichever is hit first; the report header prints the thresholds in use. 50,000 is large for a small business, so ask the owner for a threshold that fits their size and pass it with `--threshold-pct` / `--threshold-amt`.
+- **Reference ranges in the ratio calculator.** `ratio_calculator.py` grades ratios against generic built-in reference ranges (the `BENCHMARKS` table in the script), not the owner's industry data; say so when quoting an assessment. Valuation multiples (P/E, P/B, P/S, EV/EBITDA, PEG) are only described as below/within/above that range, never as good or bad.
 - Write the owner's figures to a JSON input file outside `content/` (for example a scratch or temp folder), run the script, and return the result as text. Scripts only print to stdout; they never write files.
 - Present valuations and forecasts as ranges with their assumptions stated, never as a single certain figure.
 
@@ -112,7 +114,10 @@ Analyze actual vs budget vs prior year performance with materiality filtering.
 python3 scripts/budget_variance_analyzer.py assets/sample_financial_data.json
 python3 scripts/budget_variance_analyzer.py assets/sample_financial_data.json --format json
 python3 scripts/budget_variance_analyzer.py assets/sample_financial_data.json --threshold-pct 5 --threshold-amt 25000
+python3 scripts/budget_variance_analyzer.py assets/sample_financial_data.json --currency "£"
 ```
+
+The analyzer handles one period per run: it reads only each line's `actual`, `budget` and `prior_year`. For several months, either run it once per month or sum the months into one period first, and say in the output which was done.
 
 ### 4. Forecast Builder (`scripts/forecast_builder.py`)
 

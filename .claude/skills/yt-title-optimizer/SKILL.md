@@ -26,7 +26,7 @@ final pick (and the A/B test) to you.
 - User wants titles tied to a specific goal (CTR for browse, or search-intent)
 - User wants A/B variants to drop into YouTube's Test & Compare
 
-## Formulas this skill uses (packaging shapes, Y1-Y6)
+## Formulas this skill uses (packaging shapes, Y1-Y6, Y11)
 
 | Code | Formula | Best for |
 |---|---|---|
@@ -74,6 +74,9 @@ and Y2/Y4/Y6 read weaker in the business/creator niche (noted in the reference).
 8. **On approval.** Return the text. The owner sets the title in YouTube Studio,
    or the workspace `publish` skill schedules approved content via Metricool.
 
+
+**Never invent the specifics.** Take every concrete detail (numbers, dates, named projects, positions) from `brand/profile.md` or from what the user supplied in this conversation. **Never invent a figure, a date or a client name.** If nothing fits, ask the user. A draft with a plausible invented number is worse than a draft with none: one is vague, the other is a retraction.
+
 ## Hard rules
 
 Global voice rules: see `references/voice-rules.md`. Additional skill-specific
@@ -97,7 +100,7 @@ rules:
 
 ## Resources
 
-- `references/hook-formulas.md` - Y1-Y6 title skeletons and the pairing table
+- `references/hook-formulas.md` - Y1-Y6, Y11 title skeletons and the pairing table
 - `references/algorithm-heuristics.md` - CTR x retention, packaging, the 60-char cutoff
 - `references/voice-rules.md` - the canonical voice rules
 - `references/title-checklist.md` - the per-title scrub and CTR fit list

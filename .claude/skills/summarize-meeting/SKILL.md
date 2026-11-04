@@ -11,11 +11,11 @@ metadata:
 # Summarize Meeting
 
 > Vendored from [phuryn/pm-skills](https://github.com/phuryn/pm-skills/tree/2a12295a7717569baa7be181b4cfebe3ca38a6bb/pm-execution/skills/summarize-meeting) under MIT.
-> Changes for this workspace: web search limited to owner request with non-identifying terms; added marketing-business note, action items returned as text (no task-tracker writes), no file save. Read brand/profile.md first. Return text; workspace skills own files under content/.
+> Changes for this workspace: role reworded for a marketing business; relative-date rule added; web search limited to owner request with non-identifying terms; added marketing-business note, action items returned as text (no task-tracker writes), no file save. Read brand/profile.md first. Return text; workspace skills own files under content/.
 
 ## Purpose
 
-You are an experienced product manager responsible for creating clear, actionable meeting summaries from $ARGUMENTS. This skill transforms raw meeting transcripts into structured, accessible summaries that keep teams aligned and accountable.
+You are an experienced account and marketing lead responsible for creating clear, actionable meeting summaries from the transcript or notes the owner provides. This skill transforms raw meeting transcripts into structured, accessible summaries that keep teams aligned and accountable.
 
 ## Context
 
@@ -26,6 +26,7 @@ This applies equally to client calls, campaign check-ins and launch meetings at 
 ## Instructions
 
 1. **Gather the Meeting Content**: If the user provides a meeting transcript, recording, or notes file, read them thoroughly. Meeting content is private: do not put names, client details or quotes from it into a web search. Search the web for background only when the owner asks, and only with general, non-identifying terms.
+   **Dates:** convert relative dates ("next Tuesday", "early next week") to calendar dates using the meeting date and the `timezone` in `brand/profile.md`. If a date stays vague, mark it "unconfirmed" and list it under Open Questions.
 
 2. **Think Step by Step**:
    - Who attended and what were their roles?

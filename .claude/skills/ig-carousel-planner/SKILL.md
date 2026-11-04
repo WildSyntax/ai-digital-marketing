@@ -18,7 +18,7 @@ Plan a carousel that gets swiped to the end and saved. The whole game is slide 1
 maps every slide, writes the on-image text, and drafts the caption that frames
 it.
 
-**Workspace hand-off:** this slide plan and caption can feed the workspace `instagram-post` skill, which writes the draft file (caption, hashtags, image brief) into `content/drafts/instagram/`.
+**Workspace hand-off:** the caption can feed the workspace `instagram-post` skill, which writes the draft file into `content/drafts/instagram/`. That skill and `publish` handle a single image only, so the owner designs the slides (e.g. with `canvas-design` or Canva) and posts the carousel manually.
 
 ## When to use
 
@@ -83,8 +83,7 @@ single image. See `references/slide-architecture.md` for per-formula spines.
    text, the caption, hashtag set, primary goal, and a reminder that the user
    supplies 2-10 images (all images, no mixed media) in this order.
 10. **On approval.** Return the text (slide plan, slide order, caption). The
-    owner designs and posts the slides, or the workspace `publish` skill
-    schedules approved content via Metricool.
+    owner designs and posts the slides; `publish` handles single images only, so carousels are posted manually.
 
 ## Hard rules
 

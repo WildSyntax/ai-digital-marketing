@@ -84,7 +84,7 @@ numbering in the text only if the user wants it (it counts toward 280 chars).
 8. **Approval card.** Show the thread tweet-by-tweet with per-tweet char counts,
    total tweet count, the formula, and the goal. Confirm any `---` breaks.
 9. **On approval.** Return the text (with the `---` breaks). The owner posts it,
-   or the workspace `publish` skill schedules approved content via Metricool.
+   (the workspace has no channel for this platform, so `publish` does not schedule it and nothing is written under `content/`).
 
 ## Hard rules
 

@@ -1,5 +1,7 @@
 # 11 X (Twitter) Hook Formulas - 2026 Edition
 
+> **Templates are shapes, not text to copy (workspace).** Never output "Here is…" or "Here's what…" lines: state the point directly. The example numbers are other people's results; use only figures the owner provides, and never claim "most people get X wrong" without evidence.
+
 X rewards a different shape than LinkedIn. A single tweet has to land a
 complete punch in the first line, because there is no "see more" fold to buy
 you a second sentence. A thread rewards a strong promise plus an open loop in
@@ -117,7 +119,7 @@ number from your own work, including the ugly ones.
 ```
 {Time marker}: {your project} did {real metric, good or bad}.
 
-Here is the part nobody tweets: {the honest cost, mistake, or surprise}.
+The part I left out: {the honest cost, mistake, or surprise}.
 ```
 
 **Why:** Founders and builders over-index on X, and raw transparency out-pulls
@@ -276,7 +278,7 @@ withholds the mechanism.
 ```
 {Surprising outcome stated as fact, with a number if you have one.}
 
-I did not expect why. Here is what actually happened.
+I did not expect the cause.
 ```
 
 **Why:** Line 1 is a complete, intriguing claim; line 2 deepens the gap and

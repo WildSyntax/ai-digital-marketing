@@ -72,7 +72,7 @@ Library skills this workspace calls (all must exist): `copywriting`, `copy-editi
    `metadata.source`: confirm a `LICENSE.txt` sits next to it and the skill appears in
    `THIRD_PARTY_NOTICES.md`; name any that fail. Run `ffmpeg -version` and `python3 --version`:
    if FFmpeg is missing or older than 6.1, or Python is older than 3.10, mark `ffmpeg-skill` as
-   WARN with "install FFmpeg (e.g. `brew install ffmpeg`) to use video editing". Do not install
+   WARN with "install FFmpeg to use video editing (on a Mac `brew install ffmpeg-full`, then run `python3 .claude/skills/ffmpeg-skill/scripts/_contract.py doctor` for the PATH line)". Do not install
    anything yourself.
 7. **Git.** Run `git status --short` and `git remote -v`; report uncommitted files and the
    remote.

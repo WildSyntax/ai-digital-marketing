@@ -1,6 +1,6 @@
 ---
 name: mermaid
-description: Generates Mermaid diagrams from user requirements. Supports flowcharts, sequence diagrams, class diagrams, ER diagrams, Gantt charts, and 18 more diagram types.
+description: Generates Mermaid diagrams from user requirements. Supports flowcharts, sequence diagrams, class diagrams, ER diagrams, Gantt charts, and more than 20 other diagram types.
 allowed-tools: Read Write Edit
 license: MIT
 metadata:
@@ -13,9 +13,11 @@ metadata:
 # Mermaid Diagram Generator
 
 > Vendored from [WH-2099/mermaid-skill](https://github.com/WH-2099/mermaid-skill/tree/982d9035231312c527197501a882cf6c8f4394cc/.claude/skills/mermaid) under MIT. The `references/` files are copies of the mermaid-js/mermaid syntax and config docs (MIT); their embedding snippets (`<script>`, CDN imports) are upstream documentation examples, not steps to run.
-> Changes for this workspace: frontmatter (license, metadata, third-person description) and this header only. Read brand/profile.md first. Return text; workspace skills own files under content/.
+> Changes for this workspace: frontmatter, this header, a workspace notes section, and the slash-command argument line. Read brand/profile.md first and use its "Visual identity" colours when styling. Return text; workspace skills own files under content/.
 
 Generate high-quality Mermaid diagram code based on user requirements.
+
+**Workspace notes:** For diagrams that will be shown on GitHub, stick to the long-established types (flowchart, sequence, class, state, ER, Gantt, pie, mindmap, timeline) and avoid shapes added in Mermaid v11.3+; newer types such as venn, wardley, cynefin or railroad may not render there. If the `mmdc` command is installed, validate the diagram with it; otherwise say the syntax was not machine-checked.
 
 ## Workflow
 
@@ -84,4 +86,4 @@ flowchart TD
 
 ---
 
-User requirements: $ARGUMENTS
+User requirements: the owner's request (or `$ARGUMENTS` when run as a slash command)

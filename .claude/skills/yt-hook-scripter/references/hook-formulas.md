@@ -1,4 +1,6 @@
-# 10 YouTube Hook Formulas - 2026 Edition
+# 11 YouTube Hook Formulas - 2026 Edition
+
+> **Templates are shapes, not text to copy (workspace).** Never output "Here is…" or "Here's what…" lines: state the point directly. The example numbers are other people's results; use only figures the owner provides, and never claim "most people get X wrong" without evidence.
 
 YouTube rewards a different shape than a feed platform. The hook is split across
 two surfaces that the ranker multiplies together:
@@ -52,7 +54,7 @@ the promise the title makes is the promise the first line keeps.
 the mechanism, so the only way to close the loop is to click.
 
 ```
-{Surprising result or claim}. Here is what nobody tells you.
+Why {common thing} {fails the way you don't expect}
 ```
 
 Tighter question form:
@@ -171,13 +173,13 @@ doing X" as a proven over-performer for business/marketing content specifically.
 them. The thumbnail usually shows the after; the title supplies the before.
 
 ```
-I {did hard thing} for {timeframe}. Here is what changed.
+I {did hard thing} for {timeframe}: {the concrete change}
 ```
 
 Worked shape:
 
 ```
-I posted a Short every day for 30 days. Here is what actually happened.
+I posted a Short every day for 30 days: views doubled, subscribers did not.
 ```
 
 **Why:** A transformation arc is an open loop the viewer wants resolved, and the

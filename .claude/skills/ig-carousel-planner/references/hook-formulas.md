@@ -1,5 +1,7 @@
 # 10 Instagram Hook Formulas - 2026 Edition
 
+> **Templates are shapes, not text to copy (workspace).** Never output "Here is…" or "Here's what…" lines: state the point directly. The example numbers are other people's results; use only figures the owner provides, and never claim "most people get X wrong" without evidence.
+
 Instagram rewards a different shape than a feed where the whole post is visible.
 Three surfaces matter, and each has its own hook:
 
@@ -57,7 +59,7 @@ odd-precision result before the fold.
 ```
 {Specific number result} in {timeframe}.
 
-Here is the exact thing I changed.
+The change is in the slides.
 ```
 
 Worked shape:

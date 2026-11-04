@@ -34,8 +34,8 @@ Select the template that matches the page type. Adapt sections based on the spec
 | FAQ | Capture long-tail traffic | 5 questions from gap analysis |
 | CTA to relevant service | Convert intent | Contextual link, not hard sell |
 
-**Schema:** Article. Do not add FAQPage for Google visibility; no AI or ranking benefit is confirmed.
-**Primary keyword placement:** H1, first 100 words, URL slug, meta title, one image alt text
+**Schema:** BlogPosting (the workspace `blog-post` skill adds it, plus FAQPage when the post has a FAQ, to describe the visible FAQ for non-Google engines).
+**Primary keyword placement:** H1, first 100 words, URL slug, meta title
 
 ## Case Study
 

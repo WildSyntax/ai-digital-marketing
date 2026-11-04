@@ -1,5 +1,7 @@
 # 10 TikTok 3-Second Hook Formulas - 2026 Edition
 
+> **Templates are shapes, not text to copy (workspace).** Never output "Here is…" or "Here's what…" lines: state the point directly. The example numbers are other people's results; use only figures the owner provides, and never claim "most people get X wrong" without evidence.
+
 On TikTok the hook is not a caption. It is the **first 1 to 3 seconds of the
 video**: the spoken opening line, the first on-screen text, and the opening
 visual, all firing at once. The viewer decides to stay or swipe before second
@@ -49,7 +51,7 @@ with the sound off.
 **Goal: completion.** Open on the finished outcome, then promise the how.
 
 ```
-Spoken:    this took me {specific number} tries and {timeframe}. here is the one that worked.
+Spoken:    this took me {specific number} tries and {timeframe}. this one worked.
 On-screen: {the result, stated flat} in {timeframe}
 Visual:    the finished result on screen in the first frame, no intro
 ```
@@ -209,7 +211,7 @@ destroys trust fast in a niche audience.
 end result previewed.
 
 ```
-Spoken:    here is how to {specific result} in {timeframe}. step one, right now.
+Spoken:    how to {specific result} in {timeframe}. step one, right now.
 On-screen: how to {result} (save this)
 Visual:    a 1-second flash of the finished result, then cut straight to step one
 ```

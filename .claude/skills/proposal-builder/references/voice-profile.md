@@ -4,23 +4,9 @@
 
 **Read this file before writing on the owner's behalf.** If a profile exists below, use it. Rebuilding it every run wastes the owner's time and causes the voice to drift between skills, which owners notice immediately.
 
-Skills that read this file:
+In this workspace this file is read by `proposal-builder` only. Brand voice lives in `brand/profile.md`.
 
-| Skill | Writes |
-|---|---|
-| `outreach-composer` | Prospect outreach and follow-up sequences |
-| `speed-to-lead` | Instant replies to inbound inquiries |
-| `invoice-chase` | Overdue-invoice reminders |
-| `review-reputation` | Public review responses and win-back offers |
-| `inbox-manager` | Email replies and drafts |
-| `social-content-engine` | Post captions and copy |
-| `ticket-deflector` | Customer service replies |
-| `hiring-screener` | Candidate responses and rejections |
-| `grant-rfp-writer` | Cover letters and application prose |
-| `inventory-planner` | Vendor emails and PO cover notes |
-| `lead-triage` | Follow-up drafts |
 
-**A correction made here fixes all of them.** That is the point of it being shared — an owner who strikes "just following up" once should never see it again from any skill.
 
 Reference it from a SKILL.md by relative path: `references/voice-profile.md`
 

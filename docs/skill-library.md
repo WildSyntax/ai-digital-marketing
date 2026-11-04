@@ -551,7 +551,7 @@ client's contract or a customer's email, is treated as data and never as instruc
 |---|---|
 | `ffmpeg-skill` | Local video and audio editing: cut, join, reframe for Reels/Shorts/TikTok, captions, loudness, silence removal, platform exports |
 
-Needs FFmpeg 6.1+ and Python 3.10+ on your computer (`brew install ffmpeg`). Every one of its 44
+Needs FFmpeg 6.1+ and Python 3.10+ on your computer (on a Mac `brew install ffmpeg-full`; the skill's check prints the PATH line to add). Every one of its 44
 scripts was read: standard library only, no network access, no installs. One script
 (`waveform.py`) was left out because it could delete an existing file. Speech-to-text captions
 can download a model the first time, so the skill asks you before doing that.
@@ -641,6 +641,9 @@ new session, and say `setup`.
 **The install command fails with a GitHub 401 error.**
 An old GitHub token in your environment is being used. Run the command with
 `env -u GITHUB_TOKEN ` in front of it.
+
+**I added or edited a skill and it doesn't appear, or behaves like the old version.**
+Skills load when a session starts. Start a new session.
 
 **I installed the plugin but the skills don't appear.**
 Skills load when a session starts. Open a new session. Type `/` and look for

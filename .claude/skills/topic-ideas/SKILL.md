@@ -47,6 +47,8 @@ rejects any library suggestion that uses a banned phrase from `brand/profile.md`
    created: YYYY-MM-DD
    scheduled_for: null
    published_url: null
+   published_at: null
+   publish_attempted: null
    source: null
    pillar: "<pillar name>"
    ---

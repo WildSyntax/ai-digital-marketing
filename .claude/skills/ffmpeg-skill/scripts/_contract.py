@@ -1192,9 +1192,9 @@ def doctor() -> Dict[str, Any]:
 
     `version` is this INSTALLED COPY's own version (read from its local package.json, same value
     `contract --json`'s `skill.version` reports) -- never fetched from the network or compared
-    against the latest published release. A copy installed with `npx ffmpeg-skill` is not updated
-    automatically; re-run the installer to refresh it, then `doctor` again to confirm the version
-    changed. This exists so a stale installed copy is visible locally, not to check for updates.
+    against the latest published release. This copy was vendored from kajisho5/ffmpeg-skill and is
+    not updated automatically; update it by re-vendoring (see THIRD_PARTY_NOTICES.md), then run
+    `doctor` again to confirm the version changed. This exists so a stale installed copy is visible locally, not to check for updates.
 
     Three states per capability: available, missing, unknown. `unknown` means the ffmpeg listing
     that would prove it could not be read (unparsed output, ffmpeg failure); it is never folded into
@@ -1951,7 +1951,7 @@ def main() -> int:
         if args.json:
             print(json.dumps(d, indent=2, sort_keys=True))
         else:
-            print(f"ffmpeg-skill {d['version']} (this installed copy; re-run `npx ffmpeg-skill` to refresh it -- copies are not updated automatically)")
+            print(f"ffmpeg-skill {d['version']} (this copy was vendored from kajisho5/ffmpeg-skill; update it by re-vendoring (see THIRD_PARTY_NOTICES.md) -- it is not updated automatically)")
             print(f"python {d['python']}; ffmpeg {d['ffmpeg'] or 'MISSING'}; ffprobe {d['ffprobe'] or 'MISSING'}")
             for name in ("ffmpeg", "ffprobe"):
                 if d[f"{name}_source"] == "homebrew-ffmpeg-full":
@@ -1968,6 +1968,15 @@ def main() -> int:
             print(f"missing optional: {', '.join(d['missing_optional']) or 'none'}")
             if d["unknown"]:
                 print(f"unknown (detection failed, not proven missing): {', '.join(d['unknown'])}")
+            # the same per-capability hints doctor --json puts in tools[*].fix, deduplicated; with
+            # ffmpeg/ffprobe absent every build capability is missing too, so only the install hint shows
+            fix_caps = [c for c in ("ffmpeg", "ffprobe") if c in d["missing"]] or d["missing"] + d["unknown"]
+            crashed = any("drawtext crashed" in t.get("fix", "") for t in d["tools"].values())
+            fixes = [_capability_fix_hint(c, crashed) for c in fix_caps]
+            if d["unsupported"]:
+                fixes.append("install Python 3.10+ and FFmpeg 6.1+ (ffmpeg and ffprobe from one build)")
+            for fix in dict.fromkeys(fixes):
+                print(f"fix: {fix}")
             for cap, alt in sorted(d["covered_by"].items()):
                 print(f"{cap} is not in this build; VideoToolbox ({alt[8:]}) encodes in its place (not CRF-equivalent)")
             not_usable = sorted(name for name, t in d["tools"].items() if t["usable"] != "yes")

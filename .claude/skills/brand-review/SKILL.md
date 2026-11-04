@@ -12,7 +12,7 @@ metadata:
 # Brand Review
 
 > Vendored from [anthropics/knowledge-work-plugins](https://github.com/anthropics/knowledge-work-plugins/tree/d900840716eb262e1feb17c6f4406c9ce0e06bcf/marketing/skills/brand-review) under Apache-2.0.
-> Changes for this workspace: CONNECTORS.md copied into references/; brand/profile.md is the default brand guide. Read brand/profile.md first. Return text; workspace skills own files under content/.
+> Changes for this workspace: profile overrides generic tone tables; style-rule fallback noted; CONNECTORS.md copied into references/; brand/profile.md is the default brand guide. Read brand/profile.md first. Return text; workspace skills own files under content/.
 
 > If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](references/CONNECTORS.md). If no such connector is connected, ask the owner to paste the data.
 
@@ -59,6 +59,7 @@ Evaluate the content against each of these dimensions:
 - Is the content reinforcing or contradicting brand positioning?
 
 #### Style Guide Compliance
+If `brand/profile.md` has no style rules, say that this step checked internal consistency only.
 - Grammar and punctuation per style guide (e.g., Oxford comma, title case vs. sentence case)
 - Formatting conventions (headers, lists, emphasis)
 - Number formatting, date formatting
@@ -95,6 +96,8 @@ Regardless of whether brand guidelines are configured, flag:
 - **Copyright concerns** — content that appears to be closely paraphrased from other sources
 
 ## Brand Voice Reference
+
+Workspace note: the tone tables below are generic. The Tone section and Avoid list in `brand/profile.md` override them (for example, no hype or exclamation marks even for a launch).
 
 Use these frameworks to evaluate content against brand standards or to help the user document their brand voice.
 

@@ -4,10 +4,11 @@
 Compute total cycle time (P50, P90), value-add ratio (VA%), wait %, rework %,
 and a Little's-Law throughput estimate for a documented business process.
 
-Verdict per Lean canon:
-  VA% > 25%         -> HEALTHY
-  10% <= VA% <= 25% -> TYPICAL
+Verdict per Lean canon (bands depend on --profile; saas shown):
+  VA% >= 25%        -> HEALTHY
+  10% <= VA% < 25%  -> TYPICAL
   VA% < 10%         -> WASTE-HEAVY
+If wait share exceeds the profile's wait limit, the verdict carries a caution.
 
 Stdlib only.
 """
@@ -21,11 +22,12 @@ from pathlib import Path
 
 
 # Per-industry verdict bands. Manufacturing benchmarks higher VA% than services.
+# wait_max mirrors wait_share_max in bottleneck_detector.py; keep them in sync.
 PROFILES: dict[str, dict[str, float]] = {
-    "saas":          {"healthy": 0.25, "typical": 0.10},
-    "services":      {"healthy": 0.20, "typical": 0.08},
-    "manufacturing": {"healthy": 0.35, "typical": 0.15},
-    "healthcare":    {"healthy": 0.20, "typical": 0.08},
+    "saas":          {"healthy": 0.25, "typical": 0.10, "wait_max": 0.40},
+    "services":      {"healthy": 0.20, "typical": 0.08, "wait_max": 0.50},
+    "manufacturing": {"healthy": 0.35, "typical": 0.15, "wait_max": 0.30},
+    "healthcare":    {"healthy": 0.20, "typical": 0.08, "wait_max": 0.55},
 }
 
 
@@ -43,12 +45,22 @@ class CycleTimeReport:
     wait_ratio: float
     rework_ratio: float
     verdict: str
+    verdict_caution: str | None
     wip: int
     throughput_per_hour: float | None
+    throughput_per_day: float | None
+    throughput_per_week: float | None
+    hours_per_day: float
+    days_per_week: float
     notes: list[str]
 
 
-def analyze(normalized: dict, profile: str) -> CycleTimeReport:
+def analyze(
+    normalized: dict,
+    profile: str,
+    hours_per_day: float = 24.0,
+    days_per_week: float = 7.0,
+) -> CycleTimeReport:
     prof = PROFILES.get(profile, PROFILES["saas"])
     stages = normalized.get("stages", [])
     name = normalized.get("process_name", "Untitled Process")
@@ -72,6 +84,13 @@ def analyze(normalized: dict, profile: str) -> CycleTimeReport:
     else:
         verdict = "WASTE-HEAVY"
 
+    verdict_caution = None
+    if wait_ratio > prof["wait_max"]:
+        verdict_caution = (
+            f"waiting is {wait_ratio*100:.0f}% of lead time "
+            f"(above the {profile} limit of {prof['wait_max']*100:.0f}%)"
+        )
+
     # Little's Law: L = lambda * W  =>  lambda = L / W
     # WIP is items currently in process; W (cycle time) is P50.
     # Convert minutes to hours for a per-hour throughput.
@@ -79,6 +98,8 @@ def analyze(normalized: dict, profile: str) -> CycleTimeReport:
     if wip > 0 and total_p50 > 0:
         cycle_hours = total_p50 / 60.0
         throughput = wip / cycle_hours
+    per_day = throughput * hours_per_day if throughput is not None else None
+    per_week = per_day * days_per_week if per_day is not None else None
 
     notes: list[str] = []
     if wip <= 0:
@@ -112,8 +133,13 @@ def analyze(normalized: dict, profile: str) -> CycleTimeReport:
         wait_ratio=round(wait_ratio, 4),
         rework_ratio=round(rework_ratio, 4),
         verdict=verdict,
+        verdict_caution=verdict_caution,
         wip=wip,
         throughput_per_hour=round(throughput, 4) if throughput is not None else None,
+        throughput_per_day=round(per_day, 4) if per_day is not None else None,
+        throughput_per_week=round(per_week, 4) if per_week is not None else None,
+        hours_per_day=hours_per_day,
+        days_per_week=days_per_week,
         notes=notes,
     )
 
@@ -123,7 +149,13 @@ def render_markdown(report: CycleTimeReport) -> str:
     lines.append(f"# Cycle-Time Analysis: {report.process_name}")
     lines.append("")
     lines.append(f"**Profile:** `{report.profile}`  ")
-    lines.append(f"**Verdict:** **{report.verdict}**")
+    if report.verdict_caution:
+        joiner = " flow, but" if report.verdict == "HEALTHY" else ";"
+        lines.append(
+            f"**Verdict:** **{report.verdict}**{joiner} {report.verdict_caution}"
+        )
+    else:
+        lines.append(f"**Verdict:** **{report.verdict}**")
     lines.append("")
     lines.append("## Summary")
     lines.append("")
@@ -144,6 +176,14 @@ def render_markdown(report: CycleTimeReport) -> str:
     if report.throughput_per_hour is not None:
         lines.append(
             f"| Little's-Law throughput | {report.throughput_per_hour:.3f} items/hour |"
+        )
+        lines.append(
+            f"| Throughput per day ({report.hours_per_day:g} h) | "
+            f"{report.throughput_per_day:.2f} items/day |"
+        )
+        lines.append(
+            f"| Throughput per week ({report.days_per_week:g} days) | "
+            f"{report.throughput_per_week:.2f} items/week |"
         )
     else:
         lines.append("| Little's-Law throughput | _(needs WIP > 0 in input)_ |")
@@ -196,6 +236,20 @@ def main() -> int:
         help="Output format (default: markdown).",
     )
     parser.add_argument(
+        "--hours-per-day",
+        type=float,
+        default=24.0,
+        help="Hours in a day for per-day throughput; use 8 if durations are "
+        "business minutes (default: 24).",
+    )
+    parser.add_argument(
+        "--days-per-week",
+        type=float,
+        default=7.0,
+        help="Days in a week for per-week throughput; use 5 for working "
+        "days (default: 7).",
+    )
+    parser.add_argument(
         "--sample",
         action="store_true",
         help="Use a built-in sample process and exit.",
@@ -229,7 +283,7 @@ def main() -> int:
         "stages": stages,
     }
 
-    report = analyze(normalized, args.profile)
+    report = analyze(normalized, args.profile, args.hours_per_day, args.days_per_week)
 
     if args.output == "json":
         print(json.dumps(asdict(report), indent=2))

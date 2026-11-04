@@ -23,7 +23,7 @@ metadata:
 # SEO Content Brief Generator
 
 > Vendored from [AgriciDaniel/claude-seo](https://github.com/AgriciDaniel/claude-seo/tree/6be93f45064ffbadced572b5d5c95f55fd263af0/skills/seo-content-brief) under MIT.
-> Changes for this workspace: hand-off to `blog-post` and `seo-check` added; DataForSEO/Ahrefs steps folded into an optional "if the owner provides keyword data" step; live SERP and site fetches made optional; seo-schema reference pointed at `marketing-skills:schema`. Read brand/profile.md first. Return text; workspace skills own files under content/.
+> Changes for this workspace: meta length aligned to seo-check (150-160); density, sitemap and keyword-overlap notes added; hand-off to `blog-post` and `seo-check` added; DataForSEO/Ahrefs steps folded into an optional "if the owner provides keyword data" step; live SERP and site fetches made optional; seo-schema reference pointed at `marketing-skills:schema`. Read brand/profile.md first. Return text; workspace skills own files under content/.
 
 **In this workspace.** Read `brand/profile.md` first (business context, audience, pillars, blog
 defaults, banned words). Return the brief as text in the reply; do not write files under
@@ -55,7 +55,8 @@ Generate research-backed content briefs that help writers produce pages capable 
 - Start from `brand/profile.md` for the business, services and audience
 - If web fetch is available and the owner has given a site URL, fetch the target URL or homepage
 - If available, fetch the sitemap to discover existing pages, categories, and services;
-  otherwise use existing posts under `content/` (read only) and ask the owner for key pages
+  otherwise treat `content/published/` as the sitemap (read only), mark any other link target as "unverified", and ask the owner for key pages
+- Check overlap: grep `keyword:` and `secondary_keywords:` across `content/`; if an existing item already targets this keyword, say so and propose a different angle or keyword
 - This context is critical for the Website Relevance Rule (see below)
 
 ### 3. Analyse SERPs
@@ -116,6 +117,7 @@ Read `references/keyword-density.md` for the full rules. Summary:
 
 **Primary keyword use:** Use the primary keyword naturally in high-value locations.
 - Do not optimize to a fixed density. Treat density checks as optional internal readability/stuffing heuristics only.
+- Workspace note: `seo-check` does score exact-phrase density (0.5-2%). For a long or awkward keyword, say in the brief how many natural uses fit, and accept losing those points rather than forcing it.
 - First 1-2 mentions help establish topic context. Diminishing returns after.
 - For a 1,000-word article, avoid forced repetition across headings, body, and alt text.
 
@@ -154,7 +156,7 @@ Image alt text describes the image; it is not a required keyword placement.
 - Lead with outcomes, numbers, or specifics when possible
 
 **Meta description:**
-- 130-150 characters (never under 130, never over 150)
+- 150-160 characters (the workspace `seo-check` gives full points only in this range)
 - Active voice, expand on the title with USPs and specifics
 - End with a call to action
 - No brand name at the end (it's already in the title)

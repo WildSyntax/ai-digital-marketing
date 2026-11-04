@@ -1,5 +1,7 @@
 # 13 Threads (Meta) Hook Formulas - 2026 Edition
 
+> **Templates are shapes, not text to copy (workspace).** Never output "Here is…" or "Here's what…" lines: state the point directly. The example numbers are other people's results; use only figures the owner provides, and never claim "most people get X wrong" without evidence.
+
 Threads rewards a warmer shape than X. The text-first mechanics are the same:
 the first line has to land, because the feed truncates long posts with a "more"
 cut. But the register is conversational, and the heaviest signal is a real
@@ -109,7 +111,7 @@ from your own work, including the ugly ones. Threads loves this genre.
 ```
 {Time marker}: {your project} did {real metric, good or bad}.
 
-here is the part nobody posts: {the honest cost, mistake, or surprise}.
+the part I left out: {the honest cost, mistake, or surprise}.
 ```
 
 **Why:** Founders and builders over-index on Threads, and raw transparency

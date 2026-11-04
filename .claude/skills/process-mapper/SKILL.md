@@ -14,7 +14,7 @@ metadata:
 # process-mapper
 
 > Vendored from [alirezarezvani/claude-skills](https://github.com/alirezarezvani/claude-skills/tree/c85b17e1fb621ba760478baaacc4fcb9be225e74/business-operations/skills/process-mapper) under MIT. needs: python3 (standard library only, no packages).
-> Changes for this workspace: description narrowed to mapping a process (steps, owners, handoffs, bottlenecks), with a hand-off to `process-doc` for SOPs; references to sibling skills and the `/cs-grill-bizops` command in the source repo made optional; quick-example path fixed; added a never-invent-durations rule and a no-writes-under-content/ rule. Read brand/profile.md first. Return text; workspace skills own files under content/.
+> Changes for this workspace: description narrowed to mapping a process (steps, owners, handoffs, bottlenecks), with a hand-off to `process-doc` for SOPs; references to sibling skills and the `/cs-grill-bizops` command in the source repo made optional; quick-example path fixed; added a never-invent-durations rule and a no-writes-under-content/ rule; swim-lane stage names no longer cut at 32 characters; cycle-time verdict now carries a caution when wait share exceeds the profile's wait limit; throughput also shown per day and per week (`--hours-per-day`, `--days-per-week`); VA% bands documented per `--profile` and script order made consistent; noted that rework loops must be entered as expected-value durations. Read brand/profile.md first. Return text; workspace skills own files under content/.
 
 BPMN-style business process mapping, bottleneck detection, and cycle-time analysis for internal-operations leaders.
 
@@ -41,8 +41,8 @@ Five-step deterministic flow. Work only from step names, owners and durations th
 
 1. **Intake.** Capture the process as a JSON file with one entry per stage: `name`, `owner`, `type` (`value-add` | `wait` | `rework`), `duration_minutes_p50`, `duration_minutes_p90`. Use `assets/process_template.md` and its JSON skeleton.
 2. **Map stages.** Run `process_documenter.py` to produce an ASCII swim-lane diagram + a normalized JSON artifact. The swim-lane separates lanes by owner so cross-functional handoffs become visible.
-3. **Measure cycle time.** Run `cycle_time_analyzer.py` to compute total P50, total P90, value-add ratio (VA%), and a Little's-Law throughput estimate. Verdict: VA% > 25% = HEALTHY, 10–25% = TYPICAL, < 10% = WASTE-HEAVY.
-4. **Detect bottlenecks.** Run `bottleneck_detector.py` with the appropriate `--profile` (saas / services / manufacturing / healthcare). Output is a ranked list with severity (CRITICAL / HIGH / MEDIUM), root-cause hypothesis, and one recommended action per finding.
+3. **Measure cycle time.** Run `cycle_time_analyzer.py` with the appropriate `--profile` (saas / services / manufacturing / healthcare) to compute total P50, total P90, value-add ratio (VA%), and a Little's-Law throughput estimate. The HEALTHY / TYPICAL / WASTE-HEAVY bands depend on `--profile`; see the table under Scripts.
+4. **Detect bottlenecks.** Run `bottleneck_detector.py` with the same `--profile`. Output is a ranked list with severity (CRITICAL / HIGH / MEDIUM), root-cause hypothesis, and one recommended action per finding.
 5. **Recommend.** Pair the bottleneck list with the cycle-time verdict; recommend a single constraint-focused intervention per Goldratt's "subordinate everything to the constraint" rule. Don't recommend optimization of a non-constraint stage.
 6. **Hand off (optional).** Return the map, figures and findings as text. If the owner wants the process written up as an SOP, RACI or runbook, pass this output to the workspace `process-doc` skill.
 
@@ -52,7 +52,14 @@ Five-step deterministic flow. Work only from step names, owners and durations th
 
 **`scripts/bottleneck_detector.py`** — Applies three deterministic detection rules: (a) stage P50 > 2× mean of value-add stages, (b) wait-state % > 40% of total cycle, (c) rework % > 15%. Thresholds adjust by `--profile` because SaaS, services, manufacturing, and healthcare have different "normal" wait ratios. Output is a ranked list with severity, hypothesis, action.
 
-**`scripts/cycle_time_analyzer.py`** — Computes total P50 and P90 cycle time, value-add ratio (VA%), wait %, rework %, and a Little's-Law throughput estimate (WIP / cycle time). Per Lean canon: VA% > 25% = HEALTHY, 10–25% = TYPICAL (most non-manufacturing processes land here), < 10% = WASTE-HEAVY.
+**`scripts/cycle_time_analyzer.py`** — Computes total P50 and P90 cycle time, value-add ratio (VA%), wait %, rework %, and a Little's-Law throughput estimate (WIP / cycle time) per hour, day and week. Per-day and per-week figures default to 24-hour days and 7-day weeks; if durations are business minutes, pass `--hours-per-day 8 --days-per-week 5`. Verdict bands depend on `--profile` (default `saas`); TYPICAL is where most non-manufacturing processes land. If wait share is above the profile's wait limit (the same limit `bottleneck_detector.py` uses), the verdict adds a caution such as "HEALTHY flow, but waiting is 66% of lead time".
+
+| `--profile` | HEALTHY (VA%) | TYPICAL (VA%) | WASTE-HEAVY (VA%) | Wait limit |
+|-------------|---------------|---------------|-------------------|------------|
+| saas (default) | ≥ 25% | 10–25% | < 10% | 40% |
+| services | ≥ 20% | 8–20% | < 8% | 50% |
+| manufacturing | ≥ 35% | 15–35% | < 15% | 30% |
+| healthcare | ≥ 20% | 8–20% | < 8% | 55% |
 
 ## Quick example
 
@@ -81,6 +88,10 @@ Note the flag names: in `process_documenter.py`, `--format` picks markdown/json 
 2. "Process" here means a repeatable business workflow with discrete stages, not a one-off project.
 3. The user has authority to act on bottlenecks (or can route findings to someone who does). Without that, the output is academic.
 4. Stage `type` is honest: a "value-add" stage labeled as such by the user really does change the work product from the customer's perspective. Mis-labelling waiting as value-add is the most common data-quality failure.
+
+## Limitations
+
+- The scripts model a straight sequence with no branch probabilities: rework loops must be entered as expected-value durations (for example, a 2-day revision that 30% of clients need is entered as 0.3 × 2 days).
 
 ## Anti-patterns
 
@@ -123,4 +134,4 @@ Before invoking the tools, walk the owner through these questions **one at a tim
    Recommended: surface it explicitly; rework loops belong in the map.
    Canon: Pyzdek (*Six Sigma Handbook*) — hidden rework drives 30-50% of total cycle time in service processes.
 
-Walk depth-first. Don't open question 4 before 1-3 are answered. If the owner has no measured data, accept estimates and label them as such. After all 5 are answered, invoke `process_documenter.py` → `bottleneck_detector.py` → `cycle_time_analyzer.py` in sequence.
+Walk depth-first. Don't open question 4 before 1-3 are answered. If the owner has no measured data, accept estimates and label them as such. After all 5 are answered, invoke `process_documenter.py` → `cycle_time_analyzer.py` → `bottleneck_detector.py` in sequence (the same order as the Workflow).

@@ -10,6 +10,7 @@ Usage:
     python budget_variance_analyzer.py budget_data.json
     python budget_variance_analyzer.py budget_data.json --format json
     python budget_variance_analyzer.py budget_data.json --threshold-pct 5 --threshold-amt 25000
+    python budget_variance_analyzer.py budget_data.json --currency "£"
 """
 
 import argparse
@@ -51,6 +52,7 @@ class BudgetVarianceAnalyzer:
         data: Dict[str, Any],
         threshold_pct: float = 10.0,
         threshold_amt: float = 50000.0,
+        currency: str = "$",
     ) -> None:
         """
         Initialize the analyzer.
@@ -59,12 +61,14 @@ class BudgetVarianceAnalyzer:
             data: Budget data with line items
             threshold_pct: Materiality threshold as percentage (default 10%)
             threshold_amt: Materiality threshold as dollar amount (default $50K)
+            currency: Currency symbol used in text output (default "$")
         """
         self.line_items: List[Dict[str, Any]] = data.get("line_items", [])
         self.period: str = data.get("period", "Current Period")
         self.company: str = data.get("company", "Company")
         self.threshold_pct = threshold_pct
         self.threshold_amt = threshold_amt
+        self.currency = currency
         self.variances: List[Dict[str, Any]] = []
         self.material_variances: List[Dict[str, Any]] = []
         self.summary: Dict[str, Any] = {}
@@ -73,11 +77,14 @@ class BudgetVarianceAnalyzer:
         self, line_type: str, variance_amount: float
     ) -> str:
         """
-        Classify variance as favorable or unfavorable.
+        Classify variance as favorable, unfavorable or on budget.
 
         Revenue: over budget = favorable
         Expense: under budget = favorable
+        Zero variance = on budget
         """
+        if variance_amount == 0:
+            return "On budget"
         if line_type.lower() in ("revenue", "income", "sales"):
             return "Favorable" if variance_amount > 0 else "Unfavorable"
         else:
@@ -154,6 +161,7 @@ class BudgetVarianceAnalyzer:
                     "total_variance": 0.0,
                     "favorable_count": 0,
                     "unfavorable_count": 0,
+                    "on_budget_count": 0,
                     "line_count": 0,
                 }
 
@@ -163,8 +171,10 @@ class BudgetVarianceAnalyzer:
             departments[dept]["line_count"] += 1
             if v["favorability"] == "Favorable":
                 departments[dept]["favorable_count"] += 1
-            else:
+            elif v["favorability"] == "Unfavorable":
                 departments[dept]["unfavorable_count"] += 1
+            else:
+                departments[dept]["on_budget_count"] += 1
 
         # Add variance percentage
         for dept_data in departments.values():
@@ -232,6 +242,9 @@ class BudgetVarianceAnalyzer:
         unfavorable_count = sum(
             1 for v in self.variances if v["favorability"] == "Unfavorable"
         )
+        on_budget_count = sum(
+            1 for v in self.variances if v["favorability"] == "On budget"
+        )
 
         self.summary = {
             "period": self.period,
@@ -240,6 +253,7 @@ class BudgetVarianceAnalyzer:
             "material_variances_count": len(self.material_variances),
             "favorable_count": favorable_count,
             "unfavorable_count": unfavorable_count,
+            "on_budget_count": on_budget_count,
             "revenue": {
                 "actual": total_actual,
                 "budget": total_budget,
@@ -290,14 +304,25 @@ class BudgetVarianceAnalyzer:
         summary = results["executive_summary"]
         lines.append(f"\n  Company: {summary['company']}")
         lines.append(f"  Period:  {summary['period']}")
+        cur = self.currency
+        lines.append(
+            f"  Materiality: variance >= {self.threshold_pct:g}% of budget or >= "
+            f"{cur}{self.threshold_amt:,.0f} (defaults 10% / 50,000; set "
+            f"--threshold-pct / --threshold-amt to fit the business's size)"
+        )
 
-        def fmt_money(val: float) -> str:
-            sign = "+" if val > 0 else ""
-            if abs(val) >= 1e6:
-                return f"{sign}${val / 1e6:,.2f}M"
-            if abs(val) >= 1e3:
-                return f"{sign}${val / 1e3:,.1f}K"
-            return f"{sign}${val:,.2f}"
+        def fmt_money(val: float, signed: bool = False) -> str:
+            """Amounts print unsigned; variances (signed=True) as +/-."""
+            if signed:
+                sign = "+" if val > 0 else "-" if val < 0 else ""
+            else:
+                sign = "-" if val < 0 else ""
+            mag = abs(val)
+            if mag >= 1e6:
+                return f"{sign}{cur}{mag / 1e6:,.2f}M"
+            if mag >= 1e3:
+                return f"{sign}{cur}{mag / 1e3:,.1f}K"
+            return f"{sign}{cur}{mag:,.2f}"
 
         lines.append(f"\n--- EXECUTIVE SUMMARY ---")
         rev = summary["revenue"]
@@ -305,19 +330,20 @@ class BudgetVarianceAnalyzer:
         lines.append(
             f"  Revenue:  Actual {fmt_money(rev['actual'])} vs "
             f"Budget {fmt_money(rev['budget'])} "
-            f"({fmt_money(rev['variance_amount'])}, {rev['variance_pct']:+.1f}%)"
+            f"({fmt_money(rev['variance_amount'], signed=True)}, {rev['variance_pct']:+.1f}%)"
         )
         lines.append(
             f"  Expenses: Actual {fmt_money(exp['actual'])} vs "
             f"Budget {fmt_money(exp['budget'])} "
-            f"({fmt_money(exp['variance_amount'])}, {exp['variance_pct']:+.1f}%)"
+            f"({fmt_money(exp['variance_amount'], signed=True)}, {exp['variance_pct']:+.1f}%)"
         )
-        lines.append(f"  Net Impact: {fmt_money(summary['net_impact'])}")
+        lines.append(f"  Net Impact: {fmt_money(summary['net_impact'], signed=True)}")
         lines.append(
             f"  Total Items: {summary['total_line_items']}  |  "
             f"Material: {summary['material_variances_count']}  |  "
             f"Favorable: {summary['favorable_count']}  |  "
-            f"Unfavorable: {summary['unfavorable_count']}"
+            f"Unfavorable: {summary['unfavorable_count']}  |  "
+            f"On budget: {summary['on_budget_count']}"
         )
 
         # Material variances
@@ -326,7 +352,7 @@ class BudgetVarianceAnalyzer:
             lines.append(f"\n--- MATERIAL VARIANCES ---")
             lines.append(
                 f"  (Threshold: {self.threshold_pct}% or "
-                f"${self.threshold_amt:,.0f})"
+                f"{cur}{self.threshold_amt:,.0f})"
             )
             for v in material:
                 lines.append(
@@ -337,7 +363,7 @@ class BudgetVarianceAnalyzer:
                     f"Budget: {fmt_money(v['budget'])}"
                 )
                 lines.append(
-                    f"    Variance: {fmt_money(v['budget_variance_amount'])} "
+                    f"    Variance: {fmt_money(v['budget_variance_amount'], signed=True)} "
                     f"({v['budget_variance_pct']:+.1f}%) - {v['favorability']}"
                 )
 
@@ -347,9 +373,10 @@ class BudgetVarianceAnalyzer:
             lines.append(f"\n--- DEPARTMENT SUMMARY ---")
             for dept_name, d in dept.items():
                 lines.append(
-                    f"  {dept_name}: Variance {fmt_money(d['total_variance'])} "
+                    f"  {dept_name}: Variance {fmt_money(d['total_variance'], signed=True)} "
                     f"({d['variance_pct']:+.1f}%) | "
                     f"Fav: {d['favorable_count']} / Unfav: {d['unfavorable_count']}"
+                    f" / On budget: {d['on_budget_count']}"
                 )
 
         # Category summary
@@ -358,7 +385,7 @@ class BudgetVarianceAnalyzer:
             lines.append(f"\n--- CATEGORY SUMMARY ---")
             for cat_name, c in cat.items():
                 lines.append(
-                    f"  {cat_name}: Variance {fmt_money(c['total_variance'])} "
+                    f"  {cat_name}: Variance {fmt_money(c['total_variance'], signed=True)} "
                     f"({c['variance_pct']:+.1f}%)"
                 )
 
@@ -393,6 +420,11 @@ def main() -> None:
         default=50000.0,
         help="Materiality threshold dollar amount (default: 50000)",
     )
+    parser.add_argument(
+        "--currency",
+        default="$",
+        help='Currency symbol for text output (default: "$")',
+    )
 
     args = parser.parse_args()
 
@@ -420,6 +452,7 @@ def main() -> None:
         data,
         threshold_pct=args.threshold_pct,
         threshold_amt=args.threshold_amt,
+        currency=args.currency,
     )
 
     results = analyzer.run_analysis()

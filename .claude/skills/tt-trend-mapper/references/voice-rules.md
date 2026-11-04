@@ -1,5 +1,7 @@
 # Voice Rules for TikTok (spoken and on-camera)
 
+> **Brand rules come first (workspace).** Follow the tone in `brand/profile.md`. Any word or phrase listed under "Banned words and phrases" there is forbidden on a single use, whatever the density rules below allow. Pauses like `..` and lowercase sentence starts apply only if they fit that tone.
+
 These are the canonical voice rules for the whole bundle. Every skill inherits
 them. TikTok is different from text platforms: the words are spoken out loud and
 read off the screen, not scanned in a feed. The rules below cover both the

@@ -11,7 +11,7 @@ metadata:
 # ffmpeg-skill
 
 > Vendored from [kajisho5/ffmpeg-skill](https://github.com/kajisho5/ffmpeg-skill/tree/1ce2c186bf1dba96132d87274eee46df4f537e0e) under MIT. Requires FFmpeg 6.1+ and Python 3.10+ (stdlib only).
-> Changes for this workspace: npx installer and MCP server not vendored; scripts run as `python3 .claude/skills/ffmpeg-skill/scripts/<name>.py`; `waveform.py` and the `audiogram` template removed (failed security review: deletes files it did not create); `--transcribe` needs owner consent (engines may download models); outputs never written under `content/`. Read brand/profile.md first. Return text; workspace skills own files under content/.
+> Changes for this workspace: npx installer and MCP server not vendored; scripts run as `python3 .claude/skills/ffmpeg-skill/scripts/<name>.py`; `waveform.py` and the `audiogram` template removed (failed security review: deletes files it did not create); `--transcribe` needs owner consent (engines may download models); outputs never written under `content/`; `_contract.py doctor` now says this copy is vendored (update by re-vendoring, see THIRD_PARTY_NOTICES.md) instead of pointing to `npx ffmpeg-skill`, and its plain-text output prints a `fix:` line for what is missing. Read brand/profile.md first. Return text; workspace skills own files under content/.
 
 ## Quick start
 

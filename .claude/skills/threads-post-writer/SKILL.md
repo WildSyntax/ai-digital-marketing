@@ -122,8 +122,7 @@ user sees exactly how it will land before approving. Threads does not add
 7. **Approval card.** Show: formula used, full draft (thread shown post-by-post
    with per-post char counts and total post count), suggested posting window,
    primary goal. Confirm any `---` breaks.
-8. **On approval.** Return the text. The owner posts it, or the workspace
-   `publish` skill schedules approved content via Metricool.
+8. **On approval.** Return the text. The owner posts it, (the workspace has no channel for this platform, so `publish` does not schedule it and nothing is written under `content/`).
 
 ## Hard rules
 

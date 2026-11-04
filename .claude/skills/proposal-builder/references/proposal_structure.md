@@ -117,4 +117,4 @@ Want me to save this layout as your standard proposal template? Next one would
 start from it instead of from scratch.
 ```
 
-If yes, store it so later runs match. That is the difference between a skill that saves an evening once and one that saves an evening every week.
+If yes, save it where the owner names (never under `content/`) so later runs match. That is the difference between a skill that saves an evening once and one that saves an evening every week.

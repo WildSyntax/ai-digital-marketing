@@ -80,8 +80,7 @@ when the result you are citing is someone else's.
    `references/single-tweet-checklist.md`.
 6. **Approval card.** Show: formula used, full draft, char count (note if emoji
    push it over 280), suggested posting window, primary goal.
-7. **On approval.** Return the text. The owner posts it, or the workspace
-   `publish` skill schedules approved content via Metricool.
+7. **On approval.** Return the text. The owner posts it, (the workspace has no channel for this platform, so `publish` does not schedule it and nothing is written under `content/`).
 
 ## Hard rules
 

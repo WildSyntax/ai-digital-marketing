@@ -149,7 +149,7 @@ def render_markdown(normalized: dict) -> str:
         for idx, s in owned:
             glyph = type_glyph.get(s["type"], "[?]")
             cells.append(
-                f"#{idx+1} {glyph} {s['name'][:32]} "
+                f"#{idx+1} {glyph} {s['name']} "
                 f"(p50={s['duration_minutes_p50']:.0f}m)"
             )
         row_text = "  ->  ".join(cells)
