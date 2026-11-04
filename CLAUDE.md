@@ -29,6 +29,10 @@ Read `brand/profile.md` before writing anything. Design: `docs/superpowers/specs
 7. Commit after each content change: `content(<channel>): <action> <slug>` (topic-ideas is the
    exception: `content(ideas): add <n> ideas <date>`).
 8. Never use phrases listed under "Banned words and phrases" in `brand/profile.md`.
+9. Keep the public docs current. Any change to skills, the library, connectors, or setup must
+   update `README.md` and `docs/skill-library.md` in the same commit, then be pushed to
+   `origin main`, so https://github.com/WildSyntax/ai-digital-marketing#readme always matches
+   the repo.
 
 ## Skills
 
