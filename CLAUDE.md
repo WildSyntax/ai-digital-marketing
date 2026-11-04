@@ -80,7 +80,7 @@ create files under `content/`; run it, then feed its output into the matching wo
 
 ## Vendored skills (copied open-source skills)
 
-29 skills in `.claude/skills/` were copied from open-source repos (Apache-2.0 or MIT); their front
+48 skills in `.claude/skills/` were copied from open-source repos (Apache-2.0 or MIT); their front
 matter has `metadata.source` and their folder has `LICENSE.txt`. Credits: `THIRD_PARTY_NOTICES.md`.
 Catalogue: `docs/skill-library.md` section 8. They follow the same rule as library skills: they
 return text, and never create, move or rename files under `content/`; feed their output into the

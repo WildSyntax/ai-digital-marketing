@@ -3,3 +3,6 @@ Thumbs.db
 *.swp
 .idea/
 .vscode/
+
+# frontend-slides temporary previews
+.frontend-slides/

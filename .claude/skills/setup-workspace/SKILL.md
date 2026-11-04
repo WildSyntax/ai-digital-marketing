@@ -18,8 +18,9 @@ This skill never installs plugins itself: the owner runs the install commands.
 | `.claude/product-marketing.md` | context file the library skills read first | every library skill |
 | `brand/profile.md` | brand voice, CTAs, rules | every workspace skill |
 | `metricool`, `canva`, `vidiq` connectors (`.mcp.json`) | publishing, images, YouTube research | publish, instagram-post, youtube-video, topic-ideas |
-| Vendored skills (`.claude/skills/*` with `metadata.source`) | 29 open-source skills copied into this repo; listed in `THIRD_PARTY_NOTICES.md` | owner, directly |
+| Vendored skills (`.claude/skills/*` with `metadata.source`) | 48 open-source skills copied into this repo; listed in `THIRD_PARTY_NOTICES.md` | owner, directly |
 | FFmpeg 6.1+ and Python 3.10+ (optional) | local video tools | `ffmpeg-skill` only |
+| Python 3 (optional); python-pptx, Pillow (optional, owner installs) | finance and process scripts; PowerPoint import for slides | `financial-analyst`, `process-mapper`, `frontend-slides` |
 
 Library skills this workspace calls (all must exist): `copywriting`, `copy-editing`,
 `content-strategy`, `ai-seo`, `schema`, `social`, `image`, `video`, `marketing-council`.

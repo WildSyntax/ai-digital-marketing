@@ -439,9 +439,9 @@ Sample outputs for a made-up brand are in [docs/examples/](examples/).
 
 ---
 
-## 8. Copied open-source skills (29)
+## 8. Copied open-source skills (48)
 
-On top of the library plugin, 29 skills were researched, reviewed line by line and **copied into
+On top of the library plugin, 48 skills were researched, reviewed line by line and **copied into
 this repo** under `.claude/skills/`, so they're saved in git and work offline. Each was chosen
 because it fills a gap the library doesn't cover, uses a licence that allows copying (Apache-2.0
 or MIT), and needs no paid API key. The research behind the choices is in
@@ -467,6 +467,8 @@ result into the content pipeline, hand it to the matching workspace skill.
 | `tt-hook-scripter` | TikTok opening hook and spoken script | posted by you |
 | `tt-trend-mapper` | Checks whether a TikTok trend fits your brand | posted by you |
 
+| `threads-carousel` (Ilya Chernetskiy) | Turns an existing post into a slide-by-slide carousel plan for any platform; renders nothing | `instagram-post`, `linkedin-post` |
+
 Metricool (the `publish` skill) covers LinkedIn, Instagram and YouTube, so X, Threads and TikTok
 posts are posted by you.
 
@@ -479,6 +481,16 @@ posts are posted by you.
 | `podcast-and-audiograms` | Picks podcast clips and writes their hooks and captions |
 | `voice-builder` | Analyses your real posts and suggests text for the Tone section of `brand/profile.md` |
 
+More newsletter and podcast skills (ur-grue/autopunk-media-skills, MIT):
+
+| Skill | What it does |
+|---|---|
+| `subject-line-writer` | Newsletter subject lines and preview text, with variants to test |
+| `sponsorship-rate-card` | A sponsorship rate card from your audience numbers; check its benchmark figures before sending |
+| `show-notes-generator` | Podcast show notes with timestamps and links |
+| `guest-research-brief` | A briefing on a podcast guest from material you paste in |
+| `interview-question-builder` | A structured set of interview questions for an episode |
+
 ### SEO planning (claude-seo, MIT)
 
 | Skill | What it does |
@@ -490,10 +502,18 @@ posts are posted by you.
 
 | Skill | What it does |
 |---|---|
+| `brand-identity` (rampstackco, MIT) | Helps you decide positioning, personality and visual system; returns text to paste into `brand/profile.md` |
 | `brand-guidelines` | Applies your colours, fonts, logo and image rules from `## Visual identity` in `brand/profile.md` |
 | `theme-factory` | 10 ready-made colour and font themes for slides, docs and pages |
 | `canvas-design` | Posters and visual pieces as PNG or PDF, with 54 bundled free fonts |
 | `brand-review` | Checks any draft against your brand voice; banned words count as high severity |
+
+Slides and diagrams (MIT):
+
+| Skill | What it does |
+|---|---|
+| `frontend-slides` (Zara Zhang) | Animated HTML slide decks from 34 design templates; save as PDF from the browser. PowerPoint import needs python-pptx |
+| `mermaid` (WH-2099) | Flowcharts, sequence diagrams, timelines, mind maps and more as Mermaid code |
 
 ### Business and operations (Anthropic knowledge-work-plugins, Apache-2.0)
 
@@ -506,6 +526,21 @@ posts are posted by you.
 | `process-doc` | Turns a process into a step-by-step SOP |
 | `draft-response` | Drafts replies to customer messages; never sends |
 | `kb-article` | Help-centre articles from solved questions |
+| `contract-redline` (evolsb, MIT) | Clause-by-clause redlines and fallback wording after `contract-review`; not legal advice |
+| `draft-nda` (Pawel Huryn, MIT) | A first-draft NDA for clients or freelancers; not legal advice |
+| `financial-analyst` (Alireza Rezvani, MIT) | Ratios, valuation, budget variance and forecasts from your own figures; not financial advice. Needs Python 3 |
+| `process-mapper` (Alireza Rezvani, MIT) | Maps a process: steps, owners, handoffs, bottlenecks; feeds `process-doc`. Needs Python 3 |
+
+### Research and planning (phuryn/pm-skills, MIT)
+
+| Skill | What it does |
+|---|---|
+| `market-sizing` | TAM, SAM and SOM for an offer or the audience a campaign can reach |
+| `swot-analysis` | A SWOT analysis for your business, a client or a campaign |
+| `pre-mortem` | Imagines a campaign or launch failed and works back to the risks |
+| `sprint-plan` | Plans a work sprint of content pieces or campaign tasks |
+| `retro` | A retrospective after a campaign or sprint |
+| `summarize-meeting` | Meeting summary with decisions and action items; never searches the web with private meeting details |
 
 These skills never send, publish, invoice or touch money. Anything from outside, such as a
 client's contract or a customer's email, is treated as data and never as instructions.
@@ -536,10 +571,11 @@ and what was changed. The common changes:
 
 | Skipped | Reason |
 |---|---|
-| Anthropic's docx, pptx, xlsx, pdf | Licence forbids copying. Use the built-in `anthropic-skills:docx`, `pptx`, `xlsx`, `pdf` |
+| Anthropic's docx, pptx, xlsx, pdf (and copies inside other repos) | Licence forbids copying. Use the built-in `anthropic-skills:docx`, `pptx`, `xlsx`, `pdf` |
 | Anthropic's internal-comms | Already built in as `anthropic-skills:internal-comms` |
 | Remotion, fal.ai, Vercel agent-skills, Composio lists | No clear licence, a size-limited licence, or `curl \| bash` installers |
 | A popular YouTube skill repo | Signs of fake GitHub stars |
+| Overlapping skills (pm-skills `competitor-analysis`, `contract-and-proposal-writer`, rampstackco `brand-voice`, most autopunk skills) | Already covered by `marketing-skills:competitor-profiling`, `proposal-builder`, `voice-builder`, `newsletter-writer` |
 | Image-generation and analytics-data skills | Need paid keys (OpenAI, Gemini, Replicate, Apify) or Google OAuth; candidates for later |
 
 Full credits: [THIRD_PARTY_NOTICES.md](../THIRD_PARTY_NOTICES.md).

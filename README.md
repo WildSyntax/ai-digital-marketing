@@ -44,9 +44,10 @@ flowchart LR
    optimisation, social hooks, video scripting, structured data and more. Workspace skills call
    it at fixed points and then apply its advice themselves.
 
-3. **Copied open-source skills** (29, in this repo) fill the gaps: YouTube, X, Threads, Instagram
-   and TikTok writing, newsletters, podcasts, community, SEO briefs, brand design, proposals,
-   contract review, SOPs, support replies, reports and local video editing. Each one was read
+3. **Copied open-source skills** (48, in this repo) fill the gaps: YouTube, X, Threads, Instagram
+   and TikTok writing, newsletters, podcasts, community, SEO briefs, brand identity and design,
+   slides and diagrams, proposals, contract review and redlines, NDAs, finance analysis, market
+   sizing, planning, meeting notes, SOPs, support replies, reports and local video editing. Each one was read
    line by line before copying, and keeps its licence and a credit to its author. See
    [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
@@ -76,17 +77,22 @@ Full details: **[docs/skill-library.md](docs/skill-library.md)**.
 You can also call any library skill directly, for example `/marketing-skills:copywriting` for
 a landing page or `/marketing-skills:emails` for a welcome sequence.
 
-**Copied skills you can ask for directly** (full list in [docs/skill-library.md](docs/skill-library.md#8-copied-open-source-skills-29)):
+**Copied skills you can ask for directly** (full list in [docs/skill-library.md](docs/skill-library.md#8-copied-open-source-skills-48)):
 
 | Area | Skills |
 |---|---|
 | YouTube | `yt-hook-scripter`, `yt-title-optimizer`, `yt-description-writer` |
 | X, Threads, TikTok | `x-post-writer`, `x-thread-builder`, `threads-post-writer`, `tt-hook-scripter`, `tt-trend-mapper` |
 | Instagram | `ig-caption-writer`, `ig-carousel-planner`, `ig-hashtag-strategist` |
-| Audience | `community-management`, `newsletter-writer`, `podcast-and-audiograms`, `voice-builder` |
+| Instagram and Threads carousels | `threads-carousel` |
+| Newsletter | `newsletter-writer`, `subject-line-writer`, `sponsorship-rate-card` |
+| Podcast | `podcast-and-audiograms`, `show-notes-generator`, `guest-research-brief`, `interview-question-builder` |
+| Audience and voice | `community-management`, `voice-builder` |
 | SEO planning | `seo-content-brief`, `seo-cluster` |
-| Brand and design | `brand-guidelines`, `theme-factory`, `canvas-design`, `brand-review` |
-| Business | `proposal-builder`, `contract-review`, `performance-report`, `status-report`, `process-doc`, `draft-response`, `kb-article` |
+| Brand and design | `brand-identity`, `brand-guidelines`, `theme-factory`, `canvas-design`, `brand-review` |
+| Slides and diagrams | `frontend-slides`, `mermaid` |
+| Business | `proposal-builder`, `contract-review`, `contract-redline`, `draft-nda`, `financial-analyst`, `performance-report`, `status-report`, `process-doc`, `process-mapper`, `draft-response`, `kb-article` |
+| Research and planning | `market-sizing`, `swot-analysis`, `pre-mortem`, `sprint-plan`, `retro`, `summarize-meeting` |
 | Video | `ffmpeg-skill` (needs FFmpeg on your computer) |
 
 ---
@@ -162,7 +168,7 @@ The full rule list is in [CLAUDE.md](CLAUDE.md).
 ```
 ai-digital-marketing/
 ├── .claude/
-│   ├── skills/               workspace skills + 29 copied open-source skills
+│   ├── skills/               workspace skills + 48 copied open-source skills
 │   └── product-marketing.md  points library skills at brand/profile.md
 ├── .mcp.json                 connector list (no secrets)
 ├── brand/
@@ -189,7 +195,7 @@ ai-digital-marketing/
 
 | Document | What it covers |
 |---|---|
-| [docs/skill-library.md](docs/skill-library.md) | Every workspace skill, how it uses the library, the SEO scoring, the 53-skill library catalogue, and the 29 copied skills |
+| [docs/skill-library.md](docs/skill-library.md) | Every workspace skill, how it uses the library, the SEO scoring, the 53-skill library catalogue, and the 48 copied skills |
 | [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) | Source, commit, licence and author of every copied skill |
 | [docs/research/](docs/research/) | The research report on Claude skill libraries behind the choices |
 | [docs/connectors.md](docs/connectors.md) | Connectors, optional blog hosts, and the library install options |
@@ -206,6 +212,7 @@ released under the MIT licence at
 [github.com/coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills).
 This workspace calls it as an installed plugin and does not copy its files.
 
-The 29 copied skills come from Anthropic (Apache-2.0), Sergey Bulaev, Frank Heijdenrijk
-(social-media-skills), AgriciDaniel and contributors (claude-seo) and kajisho5 (ffmpeg-skill), all
-MIT. Each keeps its licence in its folder; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+The 48 copied skills come from 18 repositories: Anthropic (Apache-2.0), and Sergey Bulaev, Frank
+Heijdenrijk (social-media-skills), AgriciDaniel and contributors (claude-seo), kajisho5
+(ffmpeg-skill), Pawel Huryn (pm-skills), Alireza Rezvani, rampstackco, evolsb, Zara Zhang
+(frontend-slides), WH-2099 (mermaid), Ilya Chernetskiy and ur-grue (autopunk), all MIT. Each keeps its licence in its folder; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
