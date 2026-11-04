@@ -13,7 +13,7 @@ canva_design_url: null
 ---
 
 ## Caption
-Five numbers. Ten minutes. Every Monday. 📊
+Five numbers. One quick check. Every Monday. 📊
 
 1. Revenue vs last week
 2. Conversion rate
@@ -21,9 +21,9 @@ Five numbers. Ten minutes. Every Monday. 📊
 4. Repeat customer rate
 5. Ad spend vs ad revenue
 
-You don't need a data team to read these. You need the same five numbers, in the same place, at the same time each week.
+You don't need a data team to read these, just the same five each week.
 
-Compare each one to last week, not to a perfect month. A small slide you catch on Monday is cheaper than one you find at month end. ✅
+Compare each one to last week, so a small slide gets caught early. ✅
 
 Save this for your next planning session.
 
