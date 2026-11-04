@@ -1,7 +1,7 @@
 ---
 title: "Your daily dashboard is making your decisions worse"
 channel: linkedin
-status: draft
+status: approved
 keyword: "weekly kpi review"
 secondary_keywords: []
 seo_score: null
