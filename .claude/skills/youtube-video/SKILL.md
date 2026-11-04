@@ -16,7 +16,7 @@ Output: `content/drafts/youtube/YYYY-MM-DD-<slug>.md`.
 3. Keyword research, only if the `vidiq` connector is connected: call
    `vidiq_keyword_research` with the keyword; pick the top 3 related terms by search volume
    and low competition as `secondary_keywords`. If not connected, derive 3 related terms
-   yourself and note "vidIQ not connected".
+   yourself and note "vidIQ not connected" in the reply.
 4. Write the file:
 
    ```markdown
@@ -49,7 +49,8 @@ Output: `content/drafts/youtube/YYYY-MM-DD-<slug>.md`.
    <one line per script section; keep 00:00 placeholders for timing after recording>
 
    <YouTube CTA from profile>
-   <link to blog if source set>
+   <if source is set: the blog link from the source blog's `published_url` when that is an http(s)
+   URL, otherwise the literal line `TODO: add blog URL once published`>
    #<3 hashtags>
 
    ## Tags

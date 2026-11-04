@@ -31,7 +31,8 @@ Output: `content/drafts/blog/YYYY-MM-DD-<slug>.md` with `seo_score` set, plus it
    - no banned phrases; no exclamation marks
    - one `# ` H1 only; H2 before any H3
 6. Write the file with front matter (`channel: blog`, `status: draft`, `created: today`,
-   `source: <idea path or null>`) and these sections after the body:
+   `source: <idea path or null>`; when the input was an idea file, also carry its `pillar` into
+   the front matter) and these sections after the body:
 
    ```markdown
    ## Meta description

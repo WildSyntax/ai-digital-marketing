@@ -28,6 +28,7 @@ Output: `content/drafts/instagram/YYYY-MM-DD-<slug>.md`.
    published_url: null
    source: <blog path or null>
    canva_design_url: null
+   image_url: null
    ---
 
    ## Caption
@@ -43,14 +44,17 @@ Output: `content/drafts/instagram/YYYY-MM-DD-<slug>.md`.
    Visual: <one sentence>
    Alt text: <descriptive alt text>
    ```
-4. Canva, only if the `canva` connector is connected (its tools appear in the session):
+4. Commit `content(instagram): draft <slug>`, so a Canva failure still leaves a committed draft.
+5. Canva, only if the `canva` connector is connected (its tools appear in the session):
    - If `canva_template` is non-empty: `search-designs` for that name, `get-design`, and create the
-     post from it with the headline overlay; export as PNG; put the design URL in
-     `canva_design_url`.
+     post from it with the headline overlay.
    - If `canva_template` is empty: `search-designs` for "instagram post" in the owner's designs; if nothing
      fits, leave `canva_design_url: null` and say "no template found; image brief only".
+   - After creating the design, export it as PNG with the Canva connector's `canva: export-design`
+     tool (if the connector exposes a differently named export tool, use that and note the name in
+     the reply). Set `canva_design_url` to the design URL and `image_url` to the exported PNG's
+     http(s) URL. Commit `content(instagram): image <slug>`.
    If Canva is connected but a call fails: name the connector, leave the file in place, and stop.
-   If Canva is not connected: leave `canva_design_url: null` and say
+   If Canva is not connected: leave `canva_design_url: null` and `image_url: null` and say
    "Canva not connected; image brief only. Connect via /mcp to create the image."
-5. Commit `content(instagram): draft <slug>`. Reply with the path, the headline, and whether
-   an image was created.
+6. Reply with the path, the headline, and whether an image was created.

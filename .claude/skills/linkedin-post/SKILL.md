@@ -39,8 +39,10 @@ Output: `content/drafts/linkedin/YYYY-MM-DD-<slug>.md`.
    <post body exactly as it should be posted>
 
    ## First comment
-   <link to the blog if source is set, else one sentence, or "none">
+   <if source is set: the blog link, taken from the source blog's `published_url` when that is an
+   http(s) URL, otherwise the literal line `TODO: add blog URL once published`; if source is not set:
+   one sentence, or "none">
    ```
-5. If the owner asked for variants, add `## Variants` with two alternative hooks plus first
+5. If the owner asked for variants, add `## Variants` after `## First comment`, with two alternative hooks plus first
    paragraphs.
 6. Commit `content(linkedin): draft <slug>`. Reply with the path and the hook line.
