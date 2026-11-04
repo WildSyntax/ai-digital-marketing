@@ -47,7 +47,7 @@ Output: `content/drafts/instagram/YYYY-MM-DD-<slug>.md`.
    - If `canva_template` is non-empty: `search-designs` for that name, `get-design`, and create the
      post from it with the headline overlay; export as PNG; put the design URL in
      `canva_design_url`.
-   - If not set: `search-designs` for "instagram post" in the owner's designs; if nothing
+   - If `canva_template` is empty: `search-designs` for "instagram post" in the owner's designs; if nothing
      fits, leave `canva_design_url: null` and say "no template found; image brief only".
    If Canva is connected but a call fails: name the connector, leave the file in place, and stop.
    If Canva is not connected: leave `canva_design_url: null` and say
