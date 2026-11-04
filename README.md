@@ -29,4 +29,10 @@ Nothing is published without you saying `approve` and then `publish`.
 
 ## Layout
 
+- `brand/`: your profile, keywords, and example posts
+- `content/`: the live queue (ideas, drafts, approved, published)
+- `reports/`: SEO reports and weekly reviews
+- `docs/examples/`: dry-run sample outputs for the placeholder Northwind brand; not part of
+  the live queue, safe to delete
+
 See `CLAUDE.md` for the rules and `docs/superpowers/specs/` for the design.

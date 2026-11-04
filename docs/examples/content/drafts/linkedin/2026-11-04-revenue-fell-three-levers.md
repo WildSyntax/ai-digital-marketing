@@ -48,4 +48,4 @@ If this was useful, follow for one practical data tip a week.
 #ecommerce #shopify #analytics #smallbusiness
 
 ## First comment
-Full guide with all nine weekly KPIs and the FAQ: <blog URL once published; source file is content/approved/blog/2026-11-04-e-commerce-kpis-to-track-weekly.md>
+Full guide with all nine weekly KPIs and the FAQ: TODO: add blog URL once published

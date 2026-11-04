@@ -35,7 +35,7 @@ Chapters:
 00:00 Recap
 
 Subscribe for one practical walkthrough every week.
-Full written guide: <blog URL once published; source file is content/approved/blog/2026-11-04-e-commerce-kpis-to-track-weekly.md>
+Full written guide: TODO: add blog URL once published
 #ecommerce #shopify #analytics
 
 ## Tags
