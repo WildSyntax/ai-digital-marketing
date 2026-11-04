@@ -8,6 +8,17 @@ description: Write a LinkedIn post draft into content/drafts/linkedin/ from a to
 Input: a topic, or a path to a blog file (drafts, approved, or published).
 Output: `content/drafts/linkedin/YYYY-MM-DD-<slug>.md`.
 
+## Requires
+
+- Library: `marketing-skills@marketingskills` plugin. Check or install it with the
+  setup-workspace skill (owner says "setup"). Calls: `marketing-skills:social`, `marketing-skills:copy-editing`.
+- Connectors: none.
+
+If the library is not installed, skip every step marked **Library**, carry on, and add
+"marketing-skills library not installed; say `setup` to fix" to the reply. Library skills
+return text only: this skill writes the file, keeps its front matter and section layout, and
+rejects any library suggestion that uses a banned phrase from `brand/profile.md`.
+
 ## Steps
 
 1. Read `brand/profile.md` and any `brand/examples/linkedin-*.md`.
@@ -20,6 +31,9 @@ Output: `content/drafts/linkedin/YYYY-MM-DD-<slug>.md`.
    - a concrete example or number in the middle
    - end with the LinkedIn CTA from the profile, then 3–5 hashtags on the last line
    - no links in the body
+   - **Library:** use `marketing-skills:social` LinkedIn guidance for the hook and line
+     rhythm (no broetry, no "it's not X, it's Y" reveals), then run
+     `marketing-skills:copy-editing` on the body. The rules above win over library advice.
 4. Write the file:
 
    ```markdown
@@ -44,5 +58,5 @@ Output: `content/drafts/linkedin/YYYY-MM-DD-<slug>.md`.
    one sentence, or "none">
    ```
 5. If the owner asked for variants, add `## Variants` after `## First comment`, with two alternative hooks plus first
-   paragraphs.
+   paragraphs (**Library:** generate them with `marketing-skills:social`).
 6. Commit `content(linkedin): draft <slug>`. Reply with the path and the hook line.

@@ -23,6 +23,8 @@ claude plugin marketplace add coreyhaines31/marketingskills
 claude plugin install marketing-skills@marketingskills
 ```
 
+Then start a new session and say `setup` to confirm everything is in place.
+
 ## Daily use
 
 | Say | Result |
@@ -36,7 +38,8 @@ claude plugin install marketing-skills@marketingskills
 | `repurpose <approved blog>` | three social drafts |
 | `publish <file>` / `publish all approved` | schedules via Metricool, moves to `content/published/`; blog publishes locally until a host connector is added |
 | `weekly review` | report in `reports/weekly/` |
-| `/copywriting`, `/seo-audit`, `/ai-seo`, `/social`, ... | library skills from marketingskills; see CLAUDE.md "Marketing skills library" |
+| `setup` | checks the library plugin, brand profile and connectors; prints the fix for each gap |
+| `/marketing-skills:copywriting`, `/marketing-skills:seo-audit`, ... | library skills; the workspace skills already call the ones they need (see each skill's `## Requires`) |
 
 Nothing is published without you saying `approve` and then `publish`.
 

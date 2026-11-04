@@ -8,6 +8,12 @@ description: Publish or schedule an approved content item through the right conn
 Input: a path under `content/approved/`, or "all approved".
 Output: file(s) moved to `content/published/<channel>/` with `published_url` and `published_at` set.
 
+## Requires
+
+- Library: not used. Publishing never calls a `marketing-skills:*` skill, so it works
+  without the plugin.
+- Connectors: `metricool` (required for linkedin, instagram, youtube).
+
 ## Guard
 
 Normalise the path first (no `..` segments). Then require all of: the path is under

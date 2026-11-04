@@ -9,6 +9,17 @@ Input: path to a Markdown file in `content/drafts/blog/` or `content/approved/bl
 Output: `reports/seo/<filename>.md` and `seo_score` set in the file's front matter.
 This skill never moves files.
 
+## Requires
+
+- Library: `marketing-skills@marketingskills` plugin. Check or install it with the
+  setup-workspace skill (owner says "setup"). Calls: `marketing-skills:ai-seo` (advisory section only; never changes the score).
+- Connectors: none.
+
+If the library is not installed, skip every step marked **Library**, carry on, and add
+"marketing-skills library not installed; say `setup` to fix" to the reply. Library skills
+return text only: this skill writes the file, keeps its front matter and section layout, and
+rejects any library suggestion that uses a banned phrase from `brand/profile.md`.
+
 ## Steps
 
 1. Read `brand/profile.md`; note `seo_threshold` and `site_domain`.
@@ -20,7 +31,8 @@ This skill never moves files.
    - H1: the first line starting with `# `
    - meta: text under `## Meta description`
    - body: everything from H1 to the first of `## Meta description`, `## Suggested internal
-     links`, `## Image brief`, `## Sources` (exclude those sections from word counts)
+     links`, `## Image brief`, `## Sources`, `## Schema`, `## AI search notes` (exclude
+     those sections from word counts)
    - headings: all `##`/`###` lines in body
    - links: Markdown links in body; internal = host equals `site_domain` or path starts with
      `/`; external = any other host. Also count entries under `## Suggested internal links`
@@ -62,6 +74,11 @@ This skill never moves files.
    ## Fixes
    (ordered by points lost, most first; each one concrete, e.g. "Add 'e-commerce analytics'
    to the title; current: '...'")
+
+   ## AI search notes
+   (**Library**, advisory, not scored: up to 5 concrete suggestions from
+   `marketing-skills:ai-seo`, e.g. an H2 that lacks a stand-alone answer, a claim without a
+   cited number, a missing FAQ. Write "library not installed" when it is missing.)
    ```
 6. Set `seo_score: <score>` in the draft's front matter (replace the existing line).
 7. Reply in chat: score, PASS/FAIL against threshold, and the top 3 fixes.
@@ -98,7 +115,7 @@ These settle every ambiguity above; apply them exactly.
   prose text separated by blank lines; its length is its word count.
 - **Headings (check 8):** count only `##` lines inside the body. The excluded sections from
   step 3 (`## Meta description`, `## Suggested internal links`, `## Image brief`,
-  `## Sources`) are not H2s. Exactly `## ` and `### ` prefixes define H2 and H3.
+  `## Sources`, `## Schema`, `## AI search notes`) are not H2s. Exactly `## ` and `### ` prefixes define H2 and H3.
 - **Links (checks 13, 14):** deduplicate by URL (ignoring a trailing `/` and `www.`, so
   `www.example.com` equals `example.com` for `site_domain`). A URL appearing in both the body
   and `## Suggested internal links` counts once. Ignore `#anchor`-only and `mailto:` links.

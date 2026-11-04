@@ -8,12 +8,26 @@ description: Write an Instagram caption, hashtags, and an image brief into conte
 Input: a topic, or a path to a blog file.
 Output: `content/drafts/instagram/YYYY-MM-DD-<slug>.md`.
 
+## Requires
+
+- Library: `marketing-skills@marketingskills` plugin. Check or install it with the
+  setup-workspace skill (owner says "setup"). Calls: `marketing-skills:social`, `marketing-skills:image`.
+- Connectors: `canva` (optional).
+
+If the library is not installed, skip every step marked **Library**, carry on, and add
+"marketing-skills library not installed; say `setup` to fix" to the reply. Library skills
+return text only: this skill writes the file, keeps its front matter and section layout, and
+rejects any library suggestion that uses a banned phrase from `brand/profile.md`.
+
 ## Steps
 
 1. Read `brand/profile.md` (tone, CTA, `canva_template`) and any `brand/examples/instagram-*.md`.
 2. If a blog path was given, read it and choose one takeaway that fits a single image or a
    3–5 point list. Set `source` and `keyword` from the blog.
-3. Write the file:
+3. **Library:** draft the caption hook with `marketing-skills:social` Instagram guidance, and
+   the image brief (composition, text overlay legibility, alt text) with
+   `marketing-skills:image`. The format rules in the template below win over library advice.
+   Write the file:
 
    ```markdown
    ---

@@ -8,6 +8,17 @@ description: Suggest 5-10 new blog topic ideas from the brand's keyword clusters
 Input: optional theme or cluster name.
 Output: 5–10 files in `content/ideas/`.
 
+## Requires
+
+- Library: `marketing-skills@marketingskills` plugin. Check or install it with the
+  setup-workspace skill (owner says "setup"). Calls: `marketing-skills:content-strategy`.
+- Connectors: `vidiq` (optional); WebSearch.
+
+If the library is not installed, skip every step marked **Library**, carry on, and add
+"marketing-skills library not installed; say `setup` to fix" to the reply. Library skills
+return text only: this skill writes the file, keeps its front matter and section layout, and
+rejects any library suggestion that uses a banned phrase from `brand/profile.md`.
+
 ## Steps
 
 1. Read `brand/profile.md` (pillars) and `brand/keywords.md`. If a theme was given, use only
@@ -18,7 +29,10 @@ Output: 5–10 files in `content/ideas/`.
    `<head keyword> questions`. From the results note recurring questions, new developments,
    and angles competitors cover thinly. If the `vidiq` connector is connected, also call
    `vidiq_keyword_research` on the head keyword and note high-volume, low-competition terms.
-4. Generate 5–10 ideas total, spread across pillars. Drop any whose keyword or title closely
+4. **Library:** use `marketing-skills:content-strategy` to sort the research into
+   searchable vs shareable topics and hub/spoke clusters, and prefer ideas that fill a gap in
+   a pillar's cluster.
+   Generate 5–10 ideas total, spread across pillars. Drop any whose keyword or title closely
    matches an existing item (same keyword, or title sharing 4+ significant words).
 5. Write each idea as `content/ideas/YYYY-MM-DD-<slug>.md`:
 

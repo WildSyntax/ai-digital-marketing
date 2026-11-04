@@ -8,6 +8,17 @@ description: Write a YouTube video package (title options, description, tags, fu
 Input: a topic, or a path to a blog file.
 Output: `content/drafts/youtube/YYYY-MM-DD-<slug>.md`.
 
+## Requires
+
+- Library: `marketing-skills@marketingskills` plugin. Check or install it with the
+  setup-workspace skill (owner says "setup"). Calls: `marketing-skills:video`, `marketing-skills:copywriting`.
+- Connectors: `vidiq` (optional).
+
+If the library is not installed, skip every step marked **Library**, carry on, and add
+"marketing-skills library not installed; say `setup` to fix" to the reply. Library skills
+return text only: this skill writes the file, keeps its front matter and section layout, and
+rejects any library suggestion that uses a banned phrase from `brand/profile.md`.
+
 ## Steps
 
 1. Read `brand/profile.md` and any `brand/examples/youtube-*.md`.
@@ -17,7 +28,10 @@ Output: `content/drafts/youtube/YYYY-MM-DD-<slug>.md`.
    `vidiq_keyword_research` with the keyword; pick the top 3 related terms by search volume
    and low competition as `secondary_keywords`. If not connected, derive 3 related terms
    yourself and note "vidIQ not connected" in the reply.
-4. Write the file:
+4. **Library:** write the title options with `marketing-skills:copywriting` (headline
+   formulas, no clickbait the video does not deliver), and the hook, script pacing and
+   thumbnail brief with `marketing-skills:video`. The length and format rules below win.
+   Write the file:
 
    ```markdown
    ---

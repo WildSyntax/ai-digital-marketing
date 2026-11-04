@@ -8,6 +8,17 @@ description: Research, outline, and write an SEO-ready blog post draft into cont
 Input: a topic, a keyword, or a path in `content/ideas/`.
 Output: `content/drafts/blog/YYYY-MM-DD-<slug>.md` with `seo_score` set, plus its SEO report.
 
+## Requires
+
+- Library: `marketing-skills@marketingskills` plugin. Check or install it with the
+  setup-workspace skill (owner says "setup"). Calls: `marketing-skills:copy-editing`, `marketing-skills:ai-seo`, `marketing-skills:schema`.
+- Connectors: none required (WebSearch/WebFetch for research).
+
+If the library is not installed, skip every step marked **Library**, carry on, and add
+"marketing-skills library not installed; say `setup` to fix" to the reply. Library skills
+return text only: this skill writes the file, keeps its front matter and section layout, and
+rejects any library suggestion that uses a banned phrase from `brand/profile.md`.
+
 ## Steps
 
 1. Read `brand/profile.md`, `brand/keywords.md`, and every file in `brand/examples/`.
@@ -30,6 +41,12 @@ Output: `content/drafts/blog/YYYY-MM-DD-<slug>.md` with `seo_score` set, plus it
    - cite each fact inline with a Markdown link to its source
    - no banned phrases; no exclamation marks
    - one `# ` H1 only; H2 before any H3
+   - **Library:** before writing, apply `marketing-skills:ai-seo` content patterns: open each
+     H2 with a 40–60 word answer that stands on its own, and make each FAQ answer
+     self-contained, so AI search can quote it.
+   - **Library:** run `marketing-skills:copy-editing` on the draft body (full sweeps, mode B:
+     keep the argument and brand voice). Keep its edits only if the keyword placement,
+     citations, length and sentence rules above still hold.
 6. Write the file with front matter (`channel: blog`, `status: draft`, `created: today`,
    `source: <idea path or null>`; when the input was an idea file, also carry its `pillar` into
    the front matter) and these sections after the body:
@@ -49,6 +66,11 @@ Output: `content/drafts/blog/YYYY-MM-DD-<slug>.md` with `seo_score` set, plus it
    ## Sources
    - <title> — <url>
    ```
+
+   **Library:** append a `## Schema` section after `## Sources` with JSON-LD from
+   `marketing-skills:schema` in a ```json fence: `Article` (headline = title, description =
+   meta description), plus `FAQPage` when the post has a `## FAQ`. Skip the section when the
+   library is not installed.
 7. Run the seo-check skill on the new file.
 8. If the score is below `seo_threshold`: apply the top fixes from the report, then run
    seo-check once more. Do not loop further; report the remaining fixes.

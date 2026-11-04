@@ -44,30 +44,35 @@ Read `brand/profile.md` before writing anything. Design: `docs/superpowers/specs
 | "approve <file> [for <datetime>]" | approval procedure (below) | `content/approved/<channel>/` |
 | "publish <file>", "publish all approved" | publish | `content/published/<channel>/` |
 | "weekly review" | weekly review procedure (below) | `reports/weekly/` |
+| "setup", "check setup" | setup-workspace | `.claude/product-marketing.md` (if missing); status checklist |
 
 ## Marketing skills library (coreyhaines31/marketingskills)
 
-The workspace also uses the open-source `marketing-skills` plugin (MIT, 53 skills, the most
-widely used marketing skill collection for Claude Code). Install it once per machine:
+The workspace depends on two library pieces, installed once per machine by the owner (Claude
+cannot install plugins; the setup-workspace skill checks them and prints these commands):
 
-```
-claude plugin marketplace add coreyhaines31/marketingskills
-claude plugin install marketing-skills@marketingskills
-```
+1. the `marketingskills` marketplace: `claude plugin marketplace add coreyhaines31/marketingskills`
+2. the `marketing-skills@marketingskills` plugin (MIT, 53 skills):
+   `claude plugin install marketing-skills@marketingskills`
+
+Library skills are named `marketing-skills:<name>` (slash form `/marketing-skills:<name>`).
+They read `.claude/product-marketing.md`, which points them at `brand/profile.md`. Each
+workspace skill lists its library calls under `## Requires` and marks them **Library** in its
+steps; when the plugin is missing those steps are skipped and the reply says so.
 
 Library skills advise and write text. The workspace skills above own file placement, front
 matter, the SEO score, and the approve/publish pipeline. Never let a library skill move or
 create files under `content/`; run it, then feed its output into the matching workspace skill.
 
-| Need | Library skill | Use it when |
+| Need | Library skill (`marketing-skills:`…) | Used by / when |
 |---|---|---|
-| Polish a draft's copy | `/copywriting`, `/copy-editing` | after blog-post or a channel skill writes a draft, before "approve" |
-| Plan pillars and a calendar | `/content-strategy`, `/marketing-plan` | when filling `brand/profile.md` pillars or planning a quarter |
-| Audit the live site | `/seo-audit` | the "live SEO audit" option from the spec; replaces the OpenSEO connector |
-| Get cited by AI search | `/ai-seo`, `/schema` | on a blog draft before approval; schema suggestions go in the `## Image brief`-style extras section as `## Schema` |
-| Social variants | `/social` | to generate alternative hooks for linkedin-post / instagram-post drafts |
-| Visual and video briefs | `/image`, `/video` | to expand the `## Image brief` or `## Thumbnail brief` sections |
-| Second opinion | `/marketing-council` | before approving a campaign-level piece |
+| Polish a draft's copy | `copywriting`, `copy-editing` | built into blog-post, linkedin-post, youtube-video; run again on any draft before "approve" |
+| Plan pillars and a calendar | `content-strategy`, `marketing-plan` | built into topic-ideas; also for filling `brand/profile.md` pillars or planning a quarter |
+| Audit the live site | `seo-audit` | the "live SEO audit" option from the spec; replaces the OpenSEO connector |
+| Get cited by AI search | `ai-seo`, `schema` | built into blog-post (answer blocks, `## Schema` section) and seo-check (`## AI search notes`, not scored) |
+| Social variants | `social` | built into linkedin-post, instagram-post, repurpose |
+| Visual and video briefs | `image`, `video` | built into instagram-post (image brief) and youtube-video (script, thumbnail) |
+| Second opinion | `marketing-council` | before approving a campaign-level piece |
 
 ## Approval procedure
 

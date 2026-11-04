@@ -61,4 +61,5 @@ To enable it for everyone who opens this folder, create `.claude/settings.json` 
 ```
 
 Claude Code asks for confirmation before installing a plugin declared by a project. The skill
-map (which library skill to use at which pipeline step) is in CLAUDE.md.
+map (which library skill to use at which pipeline step) is in CLAUDE.md, and each workspace
+skill lists its library calls under `## Requires`. Say `setup` to check the install.
