@@ -1,7 +1,7 @@
 ---
 title: "E-commerce KPIs to Track Weekly: A Small Store Guide"
 channel: blog
-status: draft
+status: approved
 keyword: "e-commerce kpis to track weekly"
 secondary_keywords: ["e-commerce analytics for small business", "how to read shopify analytics"]
 seo_score: 100
