@@ -1,13 +1,13 @@
 ---
 title: "E-commerce KPIs to Track Weekly: A Small Store Guide"
 channel: blog
-status: approved
+status: published
 keyword: "e-commerce kpis to track weekly"
 secondary_keywords: ["e-commerce analytics for small business", "how to read shopify analytics"]
 seo_score: 100
 created: 2026-11-04
 scheduled_for: null
-published_url: null
+published_url: content/published/blog/2026-11-04-e-commerce-kpis-to-track-weekly.md
 source: null
 ---
 
