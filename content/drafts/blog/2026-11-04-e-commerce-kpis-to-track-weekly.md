@@ -43,7 +43,7 @@ Here are the numbers that earn a spot on a small store's weekly review. Keep the
 
 Split it into search, social, email, paid ads and direct, because a change in the mix often explains a change in conversion. A flood of cheap social visits can lower your conversion rate without anything being wrong on your site.
 
-**4. Conversion rate.** This is the share of sessions that end in a purchase. [Shopaccino](https://www.shopaccino.com/blog/ecommerce-dashboard-metrics-every-founder-should-track-weekly) lists it among the metrics every founder should check weekly, and for good reason: a sudden drop usually points to a broken checkout, a pricing change or a slow page.
+**4. Conversion rate.** This is the share of sessions that end in a purchase. [Shopaccino](https://www.shopaccino.com/blog/ecommerce-dashboard-metrics-every-founder-should-track-weekly) lists it among the metrics every founder should check weekly, and for good reason: reviewing it every week helps you catch checkout, pricing or trust problems early.
 
 **5. Average order value.** This is revenue divided by orders. It moves slowly, so you are looking for a sharp change after a promotion or a new bundle, not a daily trend.
 
@@ -69,7 +69,7 @@ This is the habit that turns the e-commerce KPIs to track weekly into decisions.
 
 ## What to leave out of the weekly review
 
-Some metrics are real but belong on a slower clock than the e-commerce KPIs to track weekly. Customer lifetime value needs months of data to mean anything. [Growth Suite's expert answer](https://www.growthsuite.net/questions/what-key-performance-indicators-should-i-check-weekly-vs-monthly) is a useful read on splitting weekly and monthly checks, and many sources suggest reviewing average order value and lifetime value on a monthly or quarterly cycle.
+Some metrics are real but belong on a slower clock than the e-commerce KPIs to track weekly. Customer lifetime value needs months of data to mean anything. [Growth Suite](https://www.growthsuite.net/questions/what-key-performance-indicators-should-i-check-weekly-vs-monthly) advises measuring weekly and comparing against your own trend, with daily checks only during campaigns. Treat lifetime value the same way: look at it once a quarter, and keep average order value on the weekly list.
 
 Vanity numbers also deserve a pass. Social followers, page views and email list size feel good, but they rarely change what you do on Monday. If a number never leads to an action, remove it from the sheet.
 
@@ -95,7 +95,7 @@ Aim for seven to ten. Fewer than five leaves blind spots, and more than ten turn
 
 ### What is a good conversion rate for an online store?
 
-It depends on your product, price and traffic source. Published averages are often quoted at two to three percent, but your own trend matters more than any average. Track your rate for a month, then judge each week against it.
+It depends on your product, price and traffic source. Averages vary widely between industries and stores, and your own trend matters more than any average. Track your rate for a month, then judge each week against it.
 
 ### Should I look at KPIs daily instead?
 
