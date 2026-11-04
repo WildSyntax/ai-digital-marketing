@@ -13,19 +13,27 @@ source: null
 
 Your daily dashboard is making your decisions worse.
 
-Most small stores check sales every morning.
+It is easy to check sales every morning.
 
 Monday looks bad. Tuesday looks great. Wednesday looks bad again.
 
 None of that tells you what to do.
 
-Daily numbers are mostly noise. A single promo email, a payday, or a rainy afternoon can move revenue 30% in either direction.
+Daily numbers are mostly noise.
 
-So you react to the noise. You change a price on Tuesday, pause an ad on Wednesday, and by Friday you cannot tell which change did what.
+A single promo email, a payday, or a rainy afternoon can swing revenue by a lot.
+
+So you react to the noise.
+
+You change a price on Tuesday and pause an ad on Wednesday.
+
+By Friday you cannot tell which change did what.
 
 A weekly review fixes this.
 
-Seven days smooth out the spikes. What is left is a trend you can trust.
+Seven days smooth out the spikes.
+
+What is left is a trend you can trust.
 
 Here is a simple version we recommend to small teams:
 
