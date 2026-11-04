@@ -31,7 +31,7 @@ Output: `content/drafts/instagram/YYYY-MM-DD-<slug>.md`.
    ---
 
    ## Caption
-   <first line is the hook, under 10 words; then 3–6 short lines; blank lines between;
+   <first line is the hook, under 10 words; then 3–6 short lines (a bulleted or numbered list counts as one line; a line is at most ~15 words); blank lines between;
    ends with the Instagram CTA; total under 2200 characters; at most 3 emojis>
 
    ## Hashtags
@@ -44,11 +44,12 @@ Output: `content/drafts/instagram/YYYY-MM-DD-<slug>.md`.
    Alt text: <descriptive alt text>
    ```
 4. Canva, only if the `canva` connector is connected (its tools appear in the session):
-   - If `canva_template` is set: `search-designs` for that name, `get-design`, and create the
+   - If `canva_template` is non-empty: `search-designs` for that name, `get-design`, and create the
      post from it with the headline overlay; export as PNG; put the design URL in
      `canva_design_url`.
    - If not set: `search-designs` for "instagram post" in the owner's designs; if nothing
      fits, leave `canva_design_url: null` and say "no template found; image brief only".
+   If Canva is connected but a call fails: name the connector, leave the file in place, and stop.
    If Canva is not connected: leave `canva_design_url: null` and say
    "Canva not connected; image brief only. Connect via /mcp to create the image."
 5. Commit `content(instagram): draft <slug>`. Reply with the path, the headline, and whether
