@@ -279,7 +279,7 @@ seo-check gives a blog draft a score out of 100 based on 15 checks. A draft must
 | 3 | Keyword in the first 100 words | 10 |
 | 4 | Keyword in the meta description | 5 |
 | 5 | Keyword in the URL slug | 5 |
-| 6 | Keyword density 0.5–2.0% (partial credit 0.3–3.0%) | 10 |
+| 6 | Keyword used often enough, not stuffed: density 0.5–2.0% for 1–2 word keywords (partial 0.3–3.0%); for keywords of 3+ words, at least 3 uses and no more than 2.0% (partial for 2 uses) | 10 |
 | 7 | Exactly one H1 | 5 |
 | 8 | At least 3 H2 sections, no H3 before the first H2 | 5 |
 | 9 | Title 50–60 characters (partial 40–70) | 5 |

@@ -47,7 +47,7 @@ rejects any library suggestion that uses a banned phrase from `brand/profile.md`
    | 3 | keyword in first 100 words of body | 10 |
    | 4 | keyword in meta description | 5 |
    | 5 | keyword (hyphenated) in slug | 5 |
-   | 6 | keyword density 0.5–2.0% of body words (5 pts if 0.3–0.5 or 2.0–3.0) | 10 |
+   | 6 | keyword frequency: 1–2 word keyword, density 0.5–2.0% (5 pts if 0.3–0.5 or 2.0–3.0); 3+ word keyword, 3+ uses and density ≤ 2.0% (5 pts if 2 uses, or density 2.0–3.0) | 10 |
    | 7 | exactly one H1 | 5 |
    | 8 | at least 3 H2s and no H3 before the first H2 | 5 |
    | 9 | title length 50–60 chars (3 pts if 40–70) | 5 |
@@ -109,6 +109,11 @@ These settle every ambiguity above; apply them exactly.
   satisfy check 3.
 - **Density (check 6):** use the unrounded value. Bands are inclusive on the higher-scoring
   side: 0.5% and 2.0% earn full points; 0.3% to below 0.5% and above 2.0% to 3.0% earn 5.
+  Keyword length is its word count after the matching normalisation above. A keyword of 3 or
+  more words is scored on uses, not the percentage floor, because a long phrase repeated to
+  reach 0.5% reads as stuffing (and `marketing-skills:ai-seo` says stuffing lowers AI search
+  visibility): 3 or more uses with density ≤ 2.0% earn 10; exactly 2 uses, or density above
+  2.0% to 3.0%, earn 5; anything else earns 0. The report's Note states which rule applied.
 - **Readability (check 12):** sentences are prose paragraphs only (headings, list items, table
   rows and block quotes excluded), split on `.`, `!` or `?` followed by whitespace or end of
   text. Average = prose words in those paragraphs ÷ sentence count. A paragraph is a block of
