@@ -16,7 +16,7 @@ pillar: "Marketing attribution for small budgets"
 Product margin looks healthy until ad cost per sale is subtracted. This post shows small-budget teams how to attach ad spend to each product and see which ones still earn money.
 
 ## Why now
-A small-store margin guide names rising ad costs and shipping as the main drains on profit, which makes margin after marketing worth checking now (https://upsella-com.pages.dev/blog/guide/shopify-profit-margins-2026).
+Margin guides ask where profits are leaking due to rising costs, and ad spend is a cost that product margin tables usually leave out (https://www.deskera.com/blog/margin-analysis/).
 
 ## Outline
 - Why product margin alone overstates profit
@@ -25,4 +25,4 @@ A small-store margin guide names rising ad costs and shipping as the main drains
 - Deciding where the next ad dollar goes
 
 ## Sources
-- https://upsella-com.pages.dev/blog/guide/shopify-profit-margins-2026 https://www.deskera.com/blog/margin-analysis/
+- https://www.deskera.com/blog/margin-analysis/

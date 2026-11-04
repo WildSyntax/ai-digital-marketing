@@ -16,13 +16,13 @@ pillar: "Pricing and margin decisions"
 Founders ask whether their margin is healthy but find benchmarks that mix sources and methods. This post gives a cautious, sourced range and shows how to compare your own products against it.
 
 ## Why now
-A 2026 CPG report argues a 50% gross margin today equals roughly 30% in 2015, and a small-store guide cites about 30% typical margins, so expectations are shifting (https://www.kickfurther.com/blog/content-types/import-export-finance).
+A 2026 CPG research article states that a 50% gross margin in 2026 is the equivalent of a 30% gross margin in 2015, so old benchmark expectations no longer hold (https://www.kickfurther.com/blog/research-state-of-cpg-margins-2026).
 
 ## Outline
-- What the 2026 benchmarks say, and their limits
+- What the 2026 CPG benchmark says, and its limits
 - Why category matters more than the average
 - Comparing your top products to a fair benchmark
 - When a low margin is fine and when it is not
 
 ## Sources
-- https://www.kickfurther.com/blog/content-types/import-export-finance https://upsella-com.pages.dev/blog/guide/shopify-profit-margins-2026
+- https://www.kickfurther.com/blog/research-state-of-cpg-margins-2026

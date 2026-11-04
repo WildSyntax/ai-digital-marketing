@@ -16,7 +16,7 @@ pillar: "Pricing and margin decisions"
 Most small stores sort products by margin percentage and end up promoting items that earn little cash. This post shows founders how to rank products by contribution dollars with one column added to a spreadsheet.
 
 ## Why now
-Guides on product margin analysis now stress that a high-revenue product at 20% can out-earn a smaller 40% product, a point many store owners still miss (https://resources.rework.com/vi/libraries/manufacturing-growth/manufacturing-margin-analysis).
+One current guide tells teams to sort products by absolute contribution dollars rather than margin percentage, a habit most small stores have not adopted (https://resources.rework.com/vi/libraries/manufacturing-growth/manufacturing-margin-analysis).
 
 ## Outline
 - Why margin percentage misleads
@@ -25,4 +25,5 @@ Guides on product margin analysis now stress that a high-revenue product at 20% 
 - What to change on Monday: promote, reprice, or drop
 
 ## Sources
-- https://resources.rework.com/vi/libraries/manufacturing-growth/manufacturing-margin-analysis https://www.hyperbots.com/glossary/product-margin-analysis
+- https://resources.rework.com/vi/libraries/manufacturing-growth/manufacturing-margin-analysis
+- https://www.hyperbots.com/glossary/product-margin-analysis

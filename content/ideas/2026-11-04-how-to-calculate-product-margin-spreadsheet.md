@@ -16,7 +16,7 @@ pillar: "Tools and workflows we actually use"
 A step-by-step walk through the product margin formula, built in a plain spreadsheet. Written for non-finance founders who have a product list and a store export but no analyst.
 
 ## Why now
-Searches for margin formulas return mostly glossary pages, leaving a gap for a practical walkthrough that adds freight, returns and discounts (https://www.hyperbots.com/glossary/product-margin-analysis).
+Searches for the margin formula return mostly glossary pages that state it in two lines, leaving a gap for a practical walkthrough that adds freight, returns and discounts (https://www.hyperbots.com/glossary/product-margin-analysis).
 
 ## Outline
 - The basic formula: revenue minus product cost
@@ -25,4 +25,5 @@ Searches for margin formulas return mostly glossary pages, leaving a gap for a p
 - Checking your numbers before you trust them
 
 ## Sources
-- https://www.hyperbots.com/glossary/product-margin-analysis https://www.cleverence.com/articles/for-business/margin-analysis-definition-5629/
+- https://www.hyperbots.com/glossary/product-margin-analysis
+- https://www.cleverence.com/articles/for-business/margin-analysis-definition-5629/
