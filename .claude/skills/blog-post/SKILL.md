@@ -68,9 +68,12 @@ rejects any library suggestion that uses a banned phrase from `brand/profile.md`
    ```
 
    **Library:** append a `## Schema` section after `## Sources` with JSON-LD from
-   `marketing-skills:schema` in a ```json fence: `Article` (headline = title, description =
-   meta description), plus `FAQPage` when the post has a `## FAQ`. Skip the section when the
-   library is not installed.
+   `marketing-skills:schema` in a ```json fence: `BlogPosting` with its required properties
+   (headline = title, description = meta description, image, datePublished, author, publisher),
+   plus `FAQPage` when the post has a `## FAQ`. Google stopped showing FAQ rich results on
+   7 May 2026, so `FAQPage` only describes the visible FAQ for other engines; say so in the
+   reply rather than promising a rich result. Skip the section when the library is not
+   installed.
 7. Run the seo-check skill on the new file.
 8. If the score is below `seo_threshold`: apply the top fixes from the report, then run
    seo-check once more. Do not loop further; report the remaining fixes.
